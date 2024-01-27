@@ -21,14 +21,6 @@ function App() {
             PLAY
           </button>
         </Link>
-
-        {loggedIn && (
-          <Link to={"/login"}>
-            <button className="btn-green main-btn" id="main-btn-login">
-              LOGIN
-            </button>
-          </Link>
-        )}
       </div>
       {loggedIn ? (
         <button
@@ -42,7 +34,11 @@ function App() {
           Logout
         </button>
       ) : (
-        <></>
+        <Link to={"/login"}>
+          <button className="btn-green main-btn" id="main-btn-login">
+            LOGIN
+          </button>
+        </Link>
       )}
       <svg
         id="bumi_frontpage"
