@@ -1,0 +1,12 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4.4.1"
+fireauth = "0.1.5"
+rusqlite = { version = "0.30.0", features = ["bundled"] }
+serde = { version = "1.0.196", features = ["derive"] }
