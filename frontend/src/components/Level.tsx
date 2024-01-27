@@ -26,34 +26,34 @@ import Xor from "./nodes/Xor";
 
 const initialNodes: Node[] = [
   {
-    id: "0",
+    id: "I1",
     position: { x: 0, y: 0 },
     type: "Bulb",
     data: { on: true },
     deletable: false,
   },
-  { id: "1", position: { x: 0, y: 200 }, type: "AND", data: { label: "yes" } },
   {
-    id: "2",
-    position: { x: 300, y: 200 },
+    id: "I2",
+    position: { x: 0, y: 200 },
+    type: "Bulb",
+    data: { on: false },
+    deletable: false,
+  },
+  {
+    id: "1",
+    position: { x: 200, y: 100 },
     type: "AND",
     data: { label: "yes" },
   },
   {
-    id: "3",
-    position: { x: 300, y: 200 },
-    type: "NAND",
-    data: { label: "yes" },
-  },
-  {
-    id: "4",
-    position: { x: 300, y: 200 },
+    id: "B",
+    position: { x: 500, y: 100 },
     type: "Bumi",
     deletable: false,
     draggable: false,
     selectable: false,
     positionAbsolute: { x: 0, y: 0 },
-    data: { label: "yes" },
+    data: { on: false },
   },
 ];
 const initialEdges: Edge<any>[] = [];
