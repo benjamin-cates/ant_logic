@@ -35,14 +35,21 @@ function make_bumi(): Node {
 function create_test_function(input_count: number, should_activate: number[]): (nodes: Node[], edges: Edge[]) => number[] {
     return (nodes: Node[], edges: Edge[]) => {
         let wrong_inputs: number[] = [];
+        let bulb_indicies: number[] = [];
+        for(let x = 0; x < input_count; x++) {
+            bulb_indicies.push(nodes.findIndex(node=>node.id=="bulb"+x.toString()));
+        }
+        let old_bulb_states = bulb_indicies.map(idx => nodes[idx].data.on);
+        console.log("Bulb indicies: "+bulb_indicies);
         for(let i = 0;i < (1 << input_count); i++) {
             for(let x = 0; x < input_count; x++) {
-                let idx = nodes.findIndex(node=>node.id=="bulb"+x.toString());
-                nodes[idx].data.on = (i & (1 << x)) != 0;
+                nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
             }
-            let output = simulate(nodes,edges).active_nodes.includes("bulb");
+            let output = simulate(nodes,edges).active_nodes.includes("bumi");
+            console.log("output for "+i+": "+output);
             if(output != should_activate.includes(i)) wrong_inputs.push(i);
         }
+        old_bulb_states.forEach((state,idx) => nodes[bulb_indicies[idx]].data.on = state);
         return wrong_inputs;
     }
 }
@@ -66,8 +73,8 @@ const level_data: Level[] = [
             make_bumi(),
         ],
         available_gates: ["AND"],
-        testing_function: create_test_function(2, [2]),
-        prompt: "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on. Build an ant circuit that feeds Bumi when both inputs are on."
+        testing_function: create_test_function(2, [3]),
+        prompt: "How the game works: On the left are multiple input switches represented by these light bulbs. Sometimes the light bulbs represent a binary number where the bottom light represents 1, the light above it represents 2, the third light would represent 4, etc. Bumi is on the left and is hungry waiting for ants! But don’t feed him if you aren’t supposed to. Bumi is sleepy! In order to wake him up, the zookeepers turn on both lights to wake him up. Design an ant circuit that feeds him if both lights are on and doesn’t feed him when he’s asleep.",
     },
     {
         name: "XOR gate",
