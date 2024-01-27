@@ -1,7 +1,7 @@
 import { getCookie, setCookie } from "typescript-cookie";
 
 const API_ROOT = "https://ant-logic-api.thebenjicat.dev";
-type Result = "success" | "fail";
+type Result = "success" | "forbidden" | "fail";
 
 interface User {
   username: string;
@@ -12,7 +12,7 @@ interface User {
 
 async function get_self_info(): Promise<User | undefined> {
   const username = getCookie("username");
-  if (typeof username === "undefined") {
+  if (typeof username === "undefined" || username == "_") {
     return undefined;
   }
   return get_user_info(getCookie("username")!);
@@ -24,11 +24,17 @@ async function get_user_info(username: string): Promise<User | undefined> {
   return await response.json();
 }
 
+async function logout() {
+  setCookie("username","_");
+  setCookie("token","_");
+}
+
 async function login(username: string, password: string): Promise<Result> {
   const response = await post_request(API_ROOT + "/login", {
     username: username,
     password: password,
   });
+  if (response.status == 403) return "forbidden";
   if (!response.ok) return "fail";
   setCookie("username", username);
   setCookie("token", await response.text());
@@ -45,6 +51,7 @@ async function sign_up(
     email: email,
     password: password,
   });
+  if (response.status == 403) return "forbidden";
   if (!response.ok) return "fail";
   setCookie("username", username);
   setCookie("token", await response.text());
@@ -70,11 +77,13 @@ async function update_my_leaderboard(
   puzzle_id: number,
   score: number
 ): Promise<Result> {
+  if (getCookie("username") == "_") return "forbidden";
   const response = await post_request(API_ROOT + "/update_score", {
     username: getCookie("username")!,
     puzzle_id: puzzle_id,
     score: score,
   });
+  if (response.status == 403) return "forbidden";
   return response.ok ? "success" : "fail";
 }
 
@@ -95,24 +104,26 @@ async function post_request(url: string, payload: unknown) {
 
 async function update_my_currency(currency: number): Promise<Result> {
   const myself = await get_self_info();
-  if (typeof myself === "undefined") return "fail";
+  if (typeof myself === "undefined") return "forbidden";
   const response = await post_request(API_ROOT + "/user_update_ownership", {
     username: myself!.username,
     currency: currency,
     owned_vals: myself!.owned_vals,
   });
+  if (response.status == 403) return "forbidden";
   if (response.ok) return "success";
   else return "fail";
 }
 
 async function update_my_ownership(quants: number[]) {
   const myself = await get_self_info();
-  if (typeof myself === "undefined") return "fail";
+  if (typeof myself === "undefined") return "forbidden";
   const response = await post_request(API_ROOT + "/user_update_ownership", {
     username: myself!.username,
     currency: myself!.currency,
     owned_vals: quants,
   });
+  if(response.status == 403) return "forbidden";
   if (response.ok) return "success";
   else return "fail";
 }
@@ -127,4 +138,5 @@ export {
   update_my_currency,
   update_my_leaderboard,
   update_my_ownership,
+  logout,
 };
