@@ -2,11 +2,8 @@ import { Handle, Position } from "reactflow";
 
 const handleStyles: React.CSSProperties = {
   background: "none",
-  opacity: 0.5,
-  border: "none",
   width: 7,
   height: 7,
-  borderRadius: 0,
 };
 
 const And = () => {
