@@ -43,6 +43,10 @@ button:hover {
   transform: scale(1.1);
 }
 
+p {
+  font-size: 1.4rem;
+}
+
 .btn-outline {
   background-color: transparent;
   color: var(--text);
