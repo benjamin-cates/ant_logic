@@ -36,12 +36,11 @@ function Login() {
         <input type="text" id="username" placeholder="Username" className="input-login"/>
         <input type="password" id="password" placeholder="Password" className="input-login"/>
         <div className="form-btns">
-            <Link to={"/signup"}>
-            <button className="btn-yellow">New User?</button>
-            </Link>
-            <button className="btn-green" onClick={callback}>Submit</button>
+        <button className="btn-green" onClick={callback}>Submit</button>
+        <Link to={"/signup"}>
+        <button className="btn-yellow">New User?</button>
+        </Link>
         </div>
-        <img src="https://media.discordapp.net/stickers/1186905839458582528.webp?size=640" className="snorribjorn"></img>
       </form>
       <div id="form-error">{errorMessage}</div>
       <svg id="bumi_frontpage" width="2002" height="107" viewBox="0 0 2002 107" fill="none" xmlns="http://www.w3.org/2000/svg">
