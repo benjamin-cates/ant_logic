@@ -18,6 +18,9 @@ const Not = ({ id }: { id: string }) => {
         <path
           d="M47.4204 5.75934L114.618 38.1138L120.218 31.2696L129.706 38.1138L121.929 46.2024L113.218 39.5137L47.4204 71.7126V5.75934Z"
           fill={activeNodes.includes(id) ? "#F3E597" : "#EEEEEE"}
+          style={{
+            transition: "fill 0.3s ease",
+          }}
         />
         <path
           d="M128.348 38.386H155.038M43.9268 38.386H3.49622"
