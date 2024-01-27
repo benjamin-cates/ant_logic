@@ -1,4 +1,4 @@
-import _, {Edge, Node, getIncomers, getConnectedEdges} from "reactflow";
+import _, {Edge, Node, getConnectedEdges} from "reactflow";
 interface SimulateOutput {
     active_nodes: string[],
 }
@@ -39,7 +39,6 @@ function simulate(nodes: Node[], edges: Edge[]): SimulateOutput {
         });
         if(node_activation.every(val=> val!=undefined)) break;
     }
-    console.log(node_activation);
     return {active_nodes: node_activation
         .map((active, idx) => ({id: nodes[idx].id, active}))
         .filter(activation => activation.active == true)
