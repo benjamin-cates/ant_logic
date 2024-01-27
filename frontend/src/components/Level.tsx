@@ -151,7 +151,7 @@ const Level = () => {
         <Link to={"/levels"}>
           <button id="level_back_button">← Back</button>
         </Link>
-        <p id="level_prompt">{level_data[index].prompt}</p>
+        <p dangerouslySetInnerHTML={{__html: level_data[index].prompt}} id="level_prompt"></p>
         <h2>Inventory</h2>
         <div id="inventory_buttons">
           {level_data[index].available_gates.map((name) => (

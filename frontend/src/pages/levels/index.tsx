@@ -3,6 +3,7 @@ import "../../styles/levels.css";
 import { Link } from "react-router-dom";
 
 const levels = [
+    {id: 0, name: "Tutorial"},
     {id: 1, name: "AND"},
     {id: 2, name: "OR"},
     {id: 3, name: "NOT"},

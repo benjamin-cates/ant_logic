@@ -39,3 +39,9 @@
   bottom: 0;
   text-align: right;
 }
+
+#level_prompt{
+  background-color: #666;
+  border-radius: 1rem;
+  padding: 1rem;
+}

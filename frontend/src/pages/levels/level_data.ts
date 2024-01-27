@@ -49,6 +49,16 @@ function create_test_function(input_count: number, should_activate: number[]): (
 
 const level_data: Level[] = [
     {
+        name: "Tutorial",
+        default_nodes: [
+            make_bulb(0, "Input A"),
+            make_bumi(),
+        ],
+        available_gates: [],
+        testing_function: create_test_function(2, [2]),
+        prompt: "Welcome to AntLogic! This is Bumi, he is a very hungry anteater who craves electricity, for some unexplained reason. He is very picky about which power sources he eats from, so in most puzzles you will need to use logic gates to direct the flow of power.<br/><br/>Hitting the button on a light switch will turn it on/off. Clicking and dragging from any node square to another will establish a connection. If Bumi is receiving power, he will wag his tounge :)<br/><br/><em>To complete this puzzle, feed Bumi when input A is on, and don't feed him when it's off.</em>"
+    },
+    {
         name: "AND gate",
         default_nodes: [
             make_bulb(0, "Input A"),
@@ -57,7 +67,7 @@ const level_data: Level[] = [
         ],
         available_gates: ["AND"],
         testing_function: create_test_function(2, [2]),
-        prompt: "How the game works: On the left are multiple input switches represented by these light bulbs. Sometimes the light bulbs represent a binary number where the bottom light represents 1, the light above it represents 2, the third light would represent 4, etc. Bumi is on the left and is hungry waiting for ants! But don’t feed him if you aren’t supposed to. Bumi is sleepy! In order to wake him up, the zookeepers turn on both lights to wake him up. Design an ant circuit that feeds him if both lights are on and doesn’t feed him when he’s asleep.",
+        prompt: "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on. Build an ant circuit that feeds Bumi when both inputs are on."
     },
     {
         name: "XOR gate",
