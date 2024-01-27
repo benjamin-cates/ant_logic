@@ -22,6 +22,9 @@ pub async fn post_update_score(
     else {
         return HttpResponse::Forbidden().finish();
     };
+    if body.puzzle_id > 400 {
+        return HttpResponse::InternalServerError().finish();
+    }
     let email = UserListing::select(body.username.as_str(), &db)
         .unwrap_or_default()
         .email;
@@ -30,6 +33,12 @@ pub async fn post_update_score(
     }
     if let Err(error) = body.replace_score(&db) {
         println!("Leaderboard insertion error: {:?}", error);
+        return HttpResponse::InternalServerError().finish();
+    }
+    if let Err(error) =
+        UserListing::update_score(body.username.as_str(), body.puzzle_id, body.score, &db)
+    {
+        println!("User listing update score error: {:?}", error);
         return HttpResponse::InternalServerError().finish();
     }
     HttpResponse::Ok().finish()

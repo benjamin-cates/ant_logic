@@ -79,6 +79,21 @@ impl UserListing {
                 ],
             )
     }
+    pub fn update_score(
+        username: &str,
+        puzzle_id: usize,
+        score: usize,
+        db: &Mutex<Connection>,
+    ) -> Result<usize, rusqlite::Error> {
+        let mut user = UserListing::select(username, db).ok_or(rusqlite::Error::InvalidQuery)?;
+        user.remove_from_db(db)?;
+        if puzzle_id >= user.scores.len() {
+            user.scores.resize(puzzle_id + 1, 0);
+        }
+        user.scores[puzzle_id] = score;
+        user.push_to_db(db)
+    }
+
     pub fn remove_from_db(&self, db: &Mutex<Connection>) -> Result<usize, rusqlite::Error> {
         db.lock()
             .ok()
