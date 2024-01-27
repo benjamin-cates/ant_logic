@@ -59,6 +59,14 @@ p {
   border: none;
 }
 
-.react-flow__attribution {
-  display: none;
+.btn-yellow {
+  background-color: var(--yellow);
+  color: var(--text);
+  border: none;
+}
+
+.input-login {
+  background-color: var(--green);
+  color: var(--text);
+  border: none;
 }

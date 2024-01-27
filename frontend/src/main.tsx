@@ -7,12 +7,16 @@ import LevelOne from "./pages/levels/1.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Levels from "./pages/levels/index.tsx";
+import Login from "./pages/login/index.tsx";
+import Signup from "./pages/signup/index.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/levels" element={<Levels />} />
         <Route path="/levels/1" element={<LevelOne />} />
       </Routes>
