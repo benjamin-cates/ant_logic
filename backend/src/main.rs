@@ -2,6 +2,7 @@ use actix_web::{web::Data, App, HttpServer};
 mod auth;
 mod database;
 mod scores;
+mod user;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -17,6 +18,8 @@ async fn main() -> std::io::Result<()> {
             .service(auth::post_signup)
             .service(auth::post_login)
             .service(scores::post_update_score)
+            .service(scores::get_leaderboard)
+            .service(user::get_user)
             .app_data(Data::clone(&db_data))
             .app_data(Data::clone(&auth_data))
     })
