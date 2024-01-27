@@ -1,7 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0 0;
+  padding: 0 0;
+}
+
 :root {
+  --bg-1: #333333;
+  --bg-2: #444444;
+  --text: #d2d5e1;
+  --green: #768948;
+  --blue: #388697;
+  --yellow: #b39c4d;
+  --red: #d35160;
+
   font-family: "Lexend", sans-serif;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+body {
+  background-color: var(--bg-1);
+  color: var(--text);
+}
+
+h1 {
+  font-family: "Irish Grover", sans-serif;
+  font-size: 6rem;
+  color: var(--green);
+}
+
+button {
+  font-family: "Lexend", sans-serif;
+  border-radius: 0.5rem;
+  padding: 0.5rem 4rem;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+button:hover {
+  border-radius: 1rem;
+  text-decoration: underline;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--text);
+}
+
+.btn-green {
+  background-color: var(--green);
+  color: var(--text);
+  border: none;
 }
