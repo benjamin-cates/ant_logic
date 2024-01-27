@@ -129,14 +129,15 @@ pub struct LeaderboardListing {
 impl LeaderboardListing {
     pub fn select(puzzle_id: usize, db: &Mutex<Connection>) -> Result<Vec<Self>, rusqlite::Error> {
         let binding = db.lock().ok().ok_or(rusqlite::Error::InvalidQuery)?;
-        let mut stmt = binding.prepare("SELECT username, score FROM leaderboard")?;
-        let mut rows = stmt.query([])?;
+        let mut stmt =
+            binding.prepare("SELECT username, score FROM leaderboard WHERE puzzle_id = ?1")?;
+        let mut rows = stmt.query(params![puzzle_id])?;
         let mut out = Vec::new();
         while let Some(row) = rows.next()? {
             out.push(Self {
-                username: row.get(1)?,
+                username: row.get(0)?,
                 puzzle_id,
-                score: row.get(2)?,
+                score: row.get(1)?,
             });
         }
         Ok(out)
