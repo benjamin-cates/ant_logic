@@ -71,7 +71,7 @@ const Bumi = ({ data }: { data: { on: boolean } }) => {
           transform: "translate(47px, 0)",
         }}
       >
-        Bumi ({data.on ? "Happy" : "Sad"})
+        Bumi
       </div>
 
       <Handle
