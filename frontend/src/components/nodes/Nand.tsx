@@ -1,8 +1,11 @@
 import { Handle, Position } from "reactflow";
 
 import { handleStyles } from "../../utils/handles";
+import { useActiveNodes } from "../../utils/state";
 
-const Nand = () => {
+const Nand = ({ id }: { id: string }) => {
+  const activeNodes = useActiveNodes((state) => state.activeNodes);
+
   return (
     <>
       <svg
@@ -14,7 +17,7 @@ const Nand = () => {
       >
         <path
           d="M50.0079 2.85651L93.2508 3.94536L107.561 21.5225L113.317 31.0111L125.955 27.2001L129.883 35.211L125.975 41.5496L113.667 36.6887L106.473 53.7214L87.1844 66.4766L49.3857 66.0099L48.919 42.3663L49.8523 19.6559L50.0079 2.85651Z"
-          fill="#EEEEEE"
+          fill={activeNodes.includes(id) ? "#F3E597" : "#EEEEEE"}
         />
         <path
           d="M128.929 34.1564H155.883M48.0682 17.3103H4.26837M49.7528 51.0025H4.26837"
