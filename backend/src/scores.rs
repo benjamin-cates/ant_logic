@@ -1,4 +1,7 @@
-use crate::{auth::verify_bearer, database::LeaderboardListing};
+use crate::{
+    auth::verify_bearer,
+    database::{LeaderboardListing, UserListing},
+};
 use actix_web::{get, post, web, HttpRequest, HttpResponse};
 use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
@@ -11,7 +14,6 @@ pub async fn post_update_score(
     req: HttpRequest,
 ) -> HttpResponse {
     let body = json.into_inner();
-    println!("{:?}", req.headers().get("Authorization"));
     let Some(token) = req
         .headers()
         .get("Authorization")
@@ -20,7 +22,10 @@ pub async fn post_update_score(
     else {
         return HttpResponse::Forbidden().finish();
     };
-    if !verify_bearer(token, body.username.as_str(), &db) {
+    let email = UserListing::select(body.username.as_str(), &db)
+        .unwrap_or_default()
+        .email;
+    if !verify_bearer(token, email.as_str(), &db) {
         return HttpResponse::Forbidden().finish();
     }
     let _ = body.replace_score(&db);
