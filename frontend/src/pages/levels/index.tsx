@@ -1,9 +1,18 @@
 import "../../styles/levels.css";
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { level_data } from "./level_data";
+import { get_self_info } from "../../utils/backend";
+
 
 function Levels() {
+  const [completed, setCompleted] = useState([false]);
+
+  get_self_info().then(user=> {
+      if(user != undefined) 
+          setCompleted(user.scores.map(score => score != 0));
+  });
   return (
     <div id="main">
       <h1>Levels</h1>
@@ -15,7 +24,9 @@ function Levels() {
             level_data.map((level, idx) => {
                 return (
                     <Link key={idx.toString()} to={"/levels/" + idx.toString()}>
-                        <button className="lvl-btn">{"Level " + idx.toString() + ": " + level.name}</button>
+                        <button className={`${completed[idx]?"lvl-completed": ""} lvl-btn`}>
+                            {"Level " + idx.toString() + ": " + level.name}
+                        </button>
                     </Link>
                 )
             })

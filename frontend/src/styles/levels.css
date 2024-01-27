@@ -12,6 +12,10 @@
     align-items: center;
     
 }
+.lvl-completed.lvl-btn  {
+    background-color: var(--green);
+
+}
 
 .lvl-btn {
     font-size: 2rem;
