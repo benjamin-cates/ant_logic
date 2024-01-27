@@ -5,13 +5,12 @@ import { Handle, Position } from "reactflow";
 import { handleStyles } from "../../utils/handles";
 
 const Bumi = ({ data }: { data: { on: boolean } }) => {
-  const [on] = useState(data.on);
   const [tongueActive, setTongueActive] = useState(false);
 
   const { x } = useSpring({
     config: { duration: 300, easing: easings.easeInOutSine },
     x: tongueActive ? 1 : 0,
-    pause: !on,
+    pause: !data.on,
   });
 
   useEffect(() => {
@@ -66,6 +65,14 @@ const Bumi = ({ data }: { data: { on: boolean } }) => {
         />
         <rect y="37.5" width="6.74" height="6.74" fill="#B2B2B2" />
       </svg>
+
+      <div
+        style={{
+          transform: "translate(47px, 0)",
+        }}
+      >
+        Bumi ({data.on ? "Happy" : "Sad"})
+      </div>
 
       <Handle
         type="target"

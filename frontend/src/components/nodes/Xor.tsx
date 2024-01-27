@@ -1,8 +1,11 @@
 import { Handle, Position } from "reactflow";
 
 import { handleStyles } from "../../utils/handles";
+import { useActiveNodes } from "../../utils/state";
 
-const Xor = () => {
+const Xor = ({ id }: { id: string }) => {
+  const activeNodes = useActiveNodes((state) => state.activeNodes);
+
   return (
     <>
       <svg
@@ -14,7 +17,7 @@ const Xor = () => {
       >
         <path
           d="M41.5778 3.01114L77.0433 2.85559L97.5759 11.8775L114.064 30.388L113.598 39.0988L90.265 60.2536L58.8439 66.1645C58.8439 66.1645 41.8889 66.1645 41.8889 65.5423C41.8889 64.9201 52.1552 40.1876 52.1552 40.1876V25.4104L41.5778 3.01114Z"
-          fill="#EEEEEE"
+          fill={activeNodes.includes(id) ? "#F3E597" : "#EEEEEE"}
         />
         <path
           d="M113.613 33.7712H155.728M46.8786 16.9251H4.11359M48.5234 50.6173H4.11359"
