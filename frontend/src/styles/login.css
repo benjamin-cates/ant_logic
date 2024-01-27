@@ -1,43 +1,43 @@
-.input-login{
-    font-family: "Lexend", sans-serif;
-    outline: none;
-    border-radius: 0.5rem;
-    width: 100%;
-    font-size: 1.5rem;
-    padding: 0.5rem 2rem;
+.input-login {
+  font-family: "Lexend", sans-serif;
+  outline: none;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
 }
 
-.input-login:hover{
-    transform: scale(1.05)
+.input-login:hover {
+  transform: scale(1.05);
 }
 
-.input-login::placeholder{
-    color: #C0C3D1;
+.input-login::placeholder {
+  color: #c0c3d1;
 }
 
-.login-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 500px;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 500px;
 }
 
-.form-btns{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
+.form-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
 }
 
-.form-btns button{
-    width: 100%;
-    text-wrap: nowrap;
+.form-btns button {
+  width: 100%;
+  white-space: nowrap;
 }
 
-.snorribjorn{
-    margin-top: 50px;
+.snorribjorn {
+  margin-top: 50px;
 }
