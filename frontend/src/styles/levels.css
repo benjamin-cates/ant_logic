@@ -14,7 +14,8 @@
 }
 
 .lvl-btn {
-    width: 500px;
+    font-size: 2rem;
+    width: 600px;
     border: none;
     background-color: #333;
     color: #D2D5E1
