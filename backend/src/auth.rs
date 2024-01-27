@@ -1,4 +1,4 @@
-use crate::database::{self, TokenListing};
+use crate::database::{self, TokenListing, UserListing};
 use actix_web::{
     cookie::{time::Duration, Cookie},
     post, web, HttpResponse,
@@ -74,7 +74,7 @@ pub async fn post_signup(
 
 #[derive(Deserialize)]
 struct SignInRequest {
-    pub email: String,
+    pub username: String,
     pub password: String,
 }
 
@@ -85,9 +85,13 @@ pub async fn post_login(
     auth: web::Data<AuthData>,
 ) -> HttpResponse {
     let user = json.into_inner();
+    let email = match UserListing::select(user.username.as_str(), &db) {
+        Some(user_listing) => user_listing.email,
+        None => return HttpResponse::Forbidden().finish(),
+    };
     let Ok(response) = auth
         .0
-        .sign_in_email(user.email.as_str(), user.password.as_str(), true)
+        .sign_in_email(email.as_str(), user.password.as_str(), true)
         .await
     else {
         return HttpResponse::Forbidden().finish();
@@ -99,7 +103,7 @@ pub async fn post_login(
         }
     };
     if (database::TokenListing {
-        email: user.email,
+        email,
         token: token.clone(),
     })
     .push_to_db(&db)
