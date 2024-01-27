@@ -117,19 +117,18 @@ impl LeaderboardListing {
             .ok()
             .ok_or(rusqlite::Error::InvalidQuery)?
             .execute(
-                "INSERT INTO links (username, puzzle_id, score) VALUES (?1,?2,?3)",
+                "INSERT INTO leaderboard (username, puzzle_id, score) VALUES (?1,?2,?3)",
                 params![self.username, self.puzzle_id, self.score],
             )
     }
     pub fn replace_score(&self, db: &Mutex<Connection>) -> Result<usize, rusqlite::Error> {
-        let _ = db
-            .lock()
+        db.lock()
             .ok()
             .ok_or(rusqlite::Error::SqliteSingleThreadedMode)?
             .execute(
-                "DELETE from links WHERE (username, puzzle_id) = (?1, ?2)",
+                "DELETE from leaderboard WHERE username = ?1 AND puzzle_id = ?2",
                 params![self.username, self.puzzle_id],
-            );
+            )?;
         self.push_to_db(db)
     }
 }

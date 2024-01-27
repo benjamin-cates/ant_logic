@@ -28,7 +28,10 @@ pub async fn post_update_score(
     if !verify_bearer(token, email.as_str(), &db) {
         return HttpResponse::Forbidden().finish();
     }
-    let _ = body.replace_score(&db);
+    if let Err(error) = body.replace_score(&db) {
+        println!("Leaderboard insertion error: {:?}", error);
+        return HttpResponse::InternalServerError().finish();
+    }
     HttpResponse::Ok().finish()
 }
 
