@@ -12,13 +12,19 @@ import ReactFlow, {
 import { useCallback, useMemo } from "react";
 
 import And from "./nodes/And";
+import Or from "./nodes/Or";
+import Nand from "./nodes/Nand";
+import Nor from "./nodes/Nor";
+import Not from "./nodes/Not";
+import Xnor from "./nodes/Xnor";
+import Xor from "./nodes/Xor";
 
 const initialNodes = [
   { id: "3", position: { x: 0, y: 200 }, type: "AND", data: { label: "yes" } },
   {
     id: "4",
     position: { x: 300, y: 200 },
-    type: "AND",
+    type: "OR",
     data: { label: "yes" },
   },
 ];
@@ -28,7 +34,7 @@ const Level = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  const nodeTypes = useMemo(() => ({ AND: And }), []);
+  const nodeTypes = useMemo(() => ({ AND: And, OR: Or, NAND: Nand, NOR: Nor, NOT: Not, XNOR: Xnor, XOR: Xor}), []);
 
   const onConnect = useCallback(
     (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
