@@ -2,7 +2,7 @@ import "reactflow/dist/style.css";
 import "../styles/level.css";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -29,6 +29,7 @@ import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
 
 const Level = () => {
+  const [params] = useSearchParams();
   const { index } = useParams() as any;
 
   const [nodes, setNodes, onNodesChange] = useNodesState(
@@ -191,6 +192,9 @@ const Level = () => {
         }}
         onDrop={onDrop}
         onDragOver={onDragOver}
+        proOptions={{
+          hideAttribution: true,
+        }}
       >
         <Background
           variant={BackgroundVariant.Dots}
@@ -199,20 +203,24 @@ const Level = () => {
           color="#555555"
         />
       </ReactFlow>
-      <div
-        id="debug_info"
-        style={{
-          marginTop: "10px",
-          fontSize: "14px",
-          fontFamily: "monospace",
-        }}
-      >
-        Active Nodes: {JSON.stringify(activeNodes)}
-        <br />
-        Edges: {JSON.stringify(edges.map((e) => e.id))}
-        <br />
-        Node Data: {JSON.stringify(nodes.map(({ id, data }) => [id, data.on]))}
-      </div>
+
+      {params.get("dev") == "true" && (
+        <div
+          id="debug_info"
+          style={{
+            marginTop: "10px",
+            fontSize: "14px",
+            fontFamily: "monospace",
+          }}
+        >
+          Active Nodes: {JSON.stringify(activeNodes)}
+          <br />
+          Edges: {JSON.stringify(edges.map((e) => e.id))}
+          <br />
+          Node Data:{" "}
+          {JSON.stringify(nodes.map(({ id, data }) => [id, data.on]))}
+        </div>
+      )}
     </div>
   );
 };
