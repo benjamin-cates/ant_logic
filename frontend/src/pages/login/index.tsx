@@ -15,7 +15,7 @@ function Login() {
             </Link>
             <button type="submit" className="btn-green">Submit</button>
         </div>
-        
+        <img src="https://media.discordapp.net/stickers/1186905839458582528.webp?size=640" className="snorribjorn"></img>
       </form>
       <svg id="bumi_frontpage" width="2002" height="107" viewBox="0 0 2002 107" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1893.44 35.6559C1893.44 35.6559 1862 58 1765.5 45.5C1513.07 12.8013 1129.5 157 912.5 83C728.41 20.2226 3 6.5 3 6.5" stroke="#D35160" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>

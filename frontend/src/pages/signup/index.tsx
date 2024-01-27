@@ -7,7 +7,7 @@ function Signup() {
     <div id="main">
       <h1>Sign Up</h1>
       <form className="login-form">
-      <input type="text" placeholder="Email" className="input-login"/>
+        <input type="text" placeholder="Email" className="input-login"/>
         <input type="text" placeholder="Username" className="input-login"/>
         <input type="password" placeholder="Password" className="input-login"/>
         <button type="submit" className="btn-green" id="submit-login">Submit</button>

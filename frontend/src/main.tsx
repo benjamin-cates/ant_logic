@@ -9,6 +9,7 @@ import App from "./pages/index.tsx";
 import Levels from "./pages/levels/index.tsx";
 import Login from "./pages/login/index.tsx";
 import Signup from "./pages/signup/index.tsx";
+import NotFound from "./pages/notfound.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/login" element={<Login />} />
         <Route path="/levels" element={<Levels />} />
         <Route path="/levels/:index" element={<Level />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

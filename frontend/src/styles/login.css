@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    width: 500px;
 }
 
 .form-btns{
@@ -29,4 +30,14 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    width: 100%;
+}
+
+.form-btns button{
+    width: 100%;
+    text-wrap: nowrap;
+}
+
+.snorribjorn{
+    margin-top: 50px;
 }
