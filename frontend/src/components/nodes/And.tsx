@@ -2,6 +2,7 @@ import { Handle, Position } from "reactflow";
 
 const handleStyles: React.CSSProperties = {
   background: "none",
+  border: "none",
   width: 7,
   height: 7,
 };
