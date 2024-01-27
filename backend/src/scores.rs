@@ -54,7 +54,7 @@ pub struct LeaderboardResponse {
     pub scores: Vec<LeaderboardListing>,
 }
 
-#[get("/leaderboard")]
+#[post("/leaderboard")]
 pub async fn get_leaderboard(
     json: web::Json<LeaderboardRequest>,
     db: web::Data<Mutex<Connection>>,

@@ -12,7 +12,7 @@ pub struct UserResponse {
     pub currency: usize,
 }
 
-#[get("/user/{username}")]
+#[post("/user/{username}")]
 pub async fn get_user(
     path: web::Path<(String,)>,
     db: web::Data<Mutex<Connection>>,

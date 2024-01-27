@@ -1,4 +1,4 @@
-use crate::database::{self, TokenListing};
+use crate::database::{self, TokenListing, UserListing};
 use actix_web::{
     cookie::{time::Duration, Cookie},
     post, web, HttpResponse,
@@ -11,7 +11,7 @@ use std::sync::Mutex;
 pub struct AuthData(fireauth::FireAuth);
 
 pub fn get_auth_init() -> AuthData {
-    let api_key: String = String::from("AIzaSyAN6_6GKg3L-3ao4mFVhKWZXhG2fj0iC-I");
+    let api_key: String = String::from(include_str!("api_key.txt"));
     AuthData(fireauth::FireAuth::new(api_key))
 }
 
@@ -69,18 +69,12 @@ pub async fn post_signup(
         println!("failed to insert user");
         return HttpResponse::InternalServerError().finish();
     }
-    HttpResponse::Ok()
-        .cookie(
-            Cookie::build("token", token.as_str())
-                .max_age(Duration::days(20))
-                .finish(),
-        )
-        .finish()
+    HttpResponse::Ok().body(token)
 }
 
 #[derive(Deserialize)]
 struct SignInRequest {
-    pub email: String,
+    pub username: String,
     pub password: String,
 }
 
@@ -91,9 +85,13 @@ pub async fn post_login(
     auth: web::Data<AuthData>,
 ) -> HttpResponse {
     let user = json.into_inner();
+    let email = match UserListing::select(user.username.as_str(), &db) {
+        Some(user_listing) => user_listing.email,
+        None => return HttpResponse::Forbidden().finish(),
+    };
     let Ok(response) = auth
         .0
-        .sign_in_email(user.email.as_str(), user.password.as_str(), true)
+        .sign_in_email(email.as_str(), user.password.as_str(), true)
         .await
     else {
         return HttpResponse::Forbidden().finish();
@@ -105,7 +103,7 @@ pub async fn post_login(
         }
     };
     if (database::TokenListing {
-        email: user.email,
+        email,
         token: token.clone(),
     })
     .push_to_db(&db)
@@ -113,11 +111,5 @@ pub async fn post_login(
     {
         return HttpResponse::Forbidden().finish();
     }
-    HttpResponse::Ok()
-        .cookie(
-            Cookie::build("token", token.as_str())
-                .max_age(Duration::days(20))
-                .finish(),
-        )
-        .finish()
+    HttpResponse::Ok().body(token)
 }
