@@ -11,7 +11,7 @@ use std::sync::Mutex;
 pub struct AuthData(fireauth::FireAuth);
 
 pub fn get_auth_init() -> AuthData {
-    let api_key: String = String::from("AIzaSyAN6_6GKg3L-3ao4mFVhKWZXhG2fj0iC-I");
+    let api_key: String = String::from(include_str!("api_key.txt"));
     AuthData(fireauth::FireAuth::new(api_key))
 }
 
