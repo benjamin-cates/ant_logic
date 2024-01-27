@@ -40,13 +40,11 @@ function create_test_function(input_count: number, should_activate: number[]): (
             bulb_indicies.push(nodes.findIndex(node=>node.id=="bulb"+x.toString()));
         }
         let old_bulb_states = bulb_indicies.map(idx => nodes[idx].data.on);
-        console.log("Bulb indicies: "+bulb_indicies);
         for(let i = 0;i < (1 << input_count); i++) {
             for(let x = 0; x < input_count; x++) {
                 nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
             }
             let output = simulate(nodes,edges).active_nodes.includes("bumi");
-            console.log("output for "+i+": "+output);
             if(output != should_activate.includes(i)) wrong_inputs.push(i);
         }
         old_bulb_states.forEach((state,idx) => nodes[bulb_indicies[idx]].data.on = state);
