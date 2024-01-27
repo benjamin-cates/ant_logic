@@ -14,7 +14,9 @@ async fn main() -> std::io::Result<()> {
     let auth_data = Data::new(auth);
     println!("Hosting on localhost:8002");
     HttpServer::new(move || {
+        let cors = actix_cors::Cors::permissive();
         App::new()
+            .wrap(cors)
             .service(auth::post_signup)
             .service(auth::post_login)
             .service(scores::post_update_score)
