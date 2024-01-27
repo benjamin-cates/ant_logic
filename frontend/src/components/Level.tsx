@@ -1,6 +1,6 @@
 import "reactflow/dist/style.css";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -23,6 +23,8 @@ import Not from "./nodes/Not";
 import Or from "./nodes/Or";
 import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
+
+import { simulate } from "../utils/logic";
 
 const initialNodes: Node[] = [
   {
@@ -112,6 +114,12 @@ const Level = () => {
     (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
     [setEdges]
   );
+
+  useEffect(() => {
+      console.log(simulate(nodes, edges));
+  }, [nodes, edges]);
+
+
 
   return (
     <div style={{ width: "1000px", height: "600px", border: "1px solid red" }}>
