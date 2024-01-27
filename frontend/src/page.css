@@ -55,3 +55,7 @@ button:hover {
   color: var(--text);
   border: none;
 }
+
+.react-flow__attribution {
+  display: none;
+}
