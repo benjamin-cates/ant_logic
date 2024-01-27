@@ -1,6 +1,7 @@
 import "reactflow/dist/style.css";
+import "../styles/level.css";
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -12,6 +13,7 @@ import ReactFlow, {
   getOutgoers,
   useEdgesState,
   useNodesState,
+  useReactFlow,
 } from "reactflow";
 
 import { create } from "zustand";
@@ -25,6 +27,9 @@ import Not from "./nodes/Not";
 import Or from "./nodes/Or";
 import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
+import { useParams } from "react-router-dom";
+import { level_data } from "../pages/levels/level_data.ts";
+import { Link } from "react-router-dom";
 
 const initialNodes: Node[] = [
   {
@@ -58,7 +63,6 @@ const initialNodes: Node[] = [
     data: { on: true },
   },
 ];
-const initialEdges: Edge<any>[] = [];
 
 interface ActiveNodesState {
   activeNodes: string[];
@@ -71,11 +75,12 @@ export const useActiveNodes = create<ActiveNodesState>((set) => ({
 }));
 
 const Level = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  let { index: index } = useParams() as any;
+  const [nodes, setNodes, onNodesChange] = useNodesState(level_data[index].default_nodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const activeNodes = useActiveNodes((state) => state.activeNodes);
   const setActiveNodes = useActiveNodes((state) => state.setActiveNodes);
-
   const nodeTypes = useMemo(
     () => ({
       AND: And,
@@ -147,8 +152,57 @@ const Level = () => {
     });
   }, [activeNodes]);
 
+  const submitCode = () => {
+      console.log(level_data[index].testing_function(nodes,edges));
+  };
+
+    const onDragOver = useCallback((event: any) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'move';
+    }, []);
+
+    const onDrop = useCallback((event: any) => {
+        event.preventDefault();
+        const type = event.dataTransfer.getData('application/reactflow');
+        if (typeof type === 'undefined' || !type) { return; }
+        // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
+        // and you don't need to subtract the reactFlowBounds.left/top anymore
+        // details: https://reactflow.dev/whats-new/2023-11-10
+        const position = (reactFlowInstance as any).screenToFlowPosition({
+            x: event.clientX - 158/2,
+            y: event.clientY - 67/2,
+        });
+        const newNode = {
+            id: Math.random().toString(),
+            type,
+            position,
+            data: { label: `${type} node` },
+        };
+
+      setNodes((nds) => nds.concat(newNode));
+    },
+    [reactFlowInstance],
+  );
+  const onDragStart = (event: any, nodeType: string) => {
+    event.dataTransfer.setData('application/reactflow', nodeType);
+    event.dataTransfer.effectAllowed = 'move';
+  };
+
   return (
-    <div style={{ width: "1000px", height: "600px", border: "1px solid red" }}>
+    <div id="level_wrapper" style={{}}>
+      <div id="level_side_panel">
+        <Link to={"/levels"}><button id="level_back_button">← Back</button></Link>
+        <p id="level_prompt">{level_data[index].prompt}</p>
+        <h2>Inventory</h2>
+        <div id="inventory_buttons">
+        {
+            level_data[index].available_gates.map(name => (<div draggable className="inventory_button" onDragStart={(event) => onDragStart(event,name)} key={name}>
+            {name}
+            </div>))
+        }
+        </div>
+        <button id="level_submit_button" onClick={submitCode}>Submit</button>
+      </div>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -156,6 +210,7 @@ const Level = () => {
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         onConnect={onConnect}
+        onInit={setReactFlowInstance as any}
         isValidConnection={isValidConnection}
         connectionMode={ConnectionMode.Strict}
         defaultEdgeOptions={{
@@ -169,6 +224,8 @@ const Level = () => {
           strokeWidth: 3,
           stroke: "#C0C0C0",
         }}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
       >
         <Background
           variant={BackgroundVariant.Dots}
@@ -178,6 +235,7 @@ const Level = () => {
         />
       </ReactFlow>
       <div
+        id="debug_info"
         style={{
           marginTop: "10px",
           fontSize: "14px",

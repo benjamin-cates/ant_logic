@@ -12,6 +12,7 @@ interface Level {
 function make_bulb(id: number, label: string): Node {
     return {
         id: "bulb" + id.toString(),
+        type: "Bulb",
         position: {x: 0, y: 200 * id},
         data: {on: false, label},
         deletable: false,
@@ -21,6 +22,7 @@ function make_bulb(id: number, label: string): Node {
 function make_bumi(): Node {
     return {
         id: "bumi",
+        type: "Bumi",
         position: {x: 500, y: 100},
         data: {on: false},
         deletable: false,
@@ -45,7 +47,7 @@ function create_test_function(input_count: number, should_activate: number[]): (
     }
 }
 
-const data: Level[] = [
+const level_data: Level[] = [
     {
         name: "AND gate",
         default_nodes: [
@@ -143,4 +145,4 @@ const data: Level[] = [
     },
 ];
 
-export { data };
+export { level_data };

@@ -1,0 +1,40 @@
+#level_back_button {
+    margin-top: 1rem;
+}
+#level_prompt {
+    text-align: left;
+    margin: 1rem;
+}
+#level_wrapper {
+    width: 99.9vw;
+    height: 99.9vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+#level_side_panel {
+    width: calc(max(20rem, 50vw));
+    height: 100vh;
+    background: #555555;
+}
+.inventory_button {
+    width: calc(100% - 4rem);
+    margin: 0.4rem 2rem 0.4rem 2rem;
+}
+.inventory_button {
+    background: #EEEEEE;
+    color: #000000;
+}
+.inventory_button:hover {
+    transform: scale(1);
+    background: #D0D0D0;
+}
+
+#debug_info {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
