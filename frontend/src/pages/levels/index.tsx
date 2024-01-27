@@ -1,19 +1,7 @@
 import "../../styles/levels.css";
 
 import { Link } from "react-router-dom";
-
-const levels = [
-    {id: 1, name: "AND"},
-    {id: 2, name: "OR"},
-    {id: 3, name: "NOT"},
-    {id: 4, name: "Levl 4"},
-    {id: 5, name: "Level 5"},
-    {id: 6, name: "Level 6"},
-    {id: 7, name: "Level 7"},
-    {id: 8, name: "Level 8"},
-    {id: 9, name: "Level 9"},
-    {id: 10, name: "Level 10"},
-]
+import { level_data } from "./level_data";
 
 function Levels() {
   return (
@@ -24,10 +12,10 @@ function Levels() {
       </p>
       <div className="bounding-box">
         {
-            levels.map((level) => {
+            level_data.map((level, idx) => {
                 return (
-                    <Link key={level.id} to={"/levels/" + level.id}>
-                        <button className="lvl-btn">{level.name}</button>
+                    <Link key={idx.toString()} to={"/levels/" + idx.toString()}>
+                        <button className="lvl-btn">{"Level " + idx.toString() + ": " + level.name}</button>
                     </Link>
                 )
             })
