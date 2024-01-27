@@ -1,4 +1,4 @@
-import "../styles/index.css";
+import "../styles/home.css";
 
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function App() {
         build ant logic gates that feed him only under certain conditions.
       </p>
       <Link to={"/levels"}>
-        <button className="btn-green">PLAY</button>
+        <button className="btn-green main-btn">PLAY</button>
       </Link>
     </div>
   );

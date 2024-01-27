@@ -8,3 +8,7 @@
   justify-content: center;
   gap: 3rem;
 }
+
+.main-btn {
+  font-size: 3rem;
+}

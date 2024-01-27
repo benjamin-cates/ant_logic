@@ -34,14 +34,13 @@ button {
   font-family: "Lexend", sans-serif;
   border-radius: 0.5rem;
   padding: 0.5rem 4rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
 
 button:hover {
-  border-radius: 1rem;
-  text-decoration: underline;
+  transform: scale(1.1);
 }
 
 .btn-outline {

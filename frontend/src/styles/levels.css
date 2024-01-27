@@ -1,0 +1,25 @@
+.bounding-box {
+    width: 800px;
+    height: 500px;
+    background-color: #444444;
+    border-radius: 30px;
+    overflow-y: scroll;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    
+}
+
+.lvl-btn {
+    width: 500px;
+    border: none;
+    background-color: #333;
+    color: #D2D5E1
+}
+
+a {
+    display: block;
+}
