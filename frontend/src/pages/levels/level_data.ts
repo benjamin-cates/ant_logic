@@ -67,7 +67,28 @@ const level_data: Level[] = [
         ],
         available_gates: ["AND"],
         testing_function: create_test_function(2, [2]),
-        prompt: "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on. Build an ant circuit that feeds Bumi when both inputs are on."
+        prompt: "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when both inputs are on.</em>"
+    },
+    {
+        name: "OR gate",
+        default_nodes: [
+            make_bulb(0, "Input A"),
+            make_bulb(1, "Input B"),
+            make_bumi(),
+        ],
+        available_gates: ["OR"],
+        testing_function: create_test_function(2, [2]),
+        prompt: "Introducing your next gate: OR. This gate will turn on if <em>at least 1</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when at least 1 input is on.</em>"
+    },
+    {
+        name: "NOT gate",
+        default_nodes: [
+            make_bulb(0, "Input A"),
+            make_bumi(),
+        ],
+        available_gates: ["NOT"],
+        testing_function: create_test_function(2, [2]),
+        prompt: "Your last simple gate is NOT. This gate will only turn on if the input is <em>off</em>.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when the input is off.</em>"
     },
     {
         name: "XOR gate",

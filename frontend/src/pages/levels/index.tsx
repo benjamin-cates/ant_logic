@@ -6,20 +6,6 @@ import { level_data } from "./level_data";
 import { get_self_info } from "../../utils/backend";
 
 
-const levels = [
-    {id: 0, name: "Tutorial"},
-    {id: 1, name: "AND"},
-    {id: 2, name: "OR"},
-    {id: 3, name: "NOT"},
-    {id: 4, name: "Levl 4"},
-    {id: 5, name: "Level 5"},
-    {id: 6, name: "Level 6"},
-    {id: 7, name: "Level 7"},
-    {id: 8, name: "Level 8"},
-    {id: 9, name: "Level 9"},
-    {id: 10, name: "Level 10"},
-]
-
 function Levels() {
   const [completed, setCompleted] = useState([false]);
 
@@ -39,7 +25,7 @@ function Levels() {
                 return (
                     <Link key={idx.toString()} to={"/levels/" + idx.toString()}>
                         <button className={`${completed[idx]?"lvl-completed": ""} lvl-btn`}>
-                            {"Level " + idx.toString() + ": " + level.name}
+                            {level.name}
                         </button>
                     </Link>
                 )
