@@ -1,8 +1,11 @@
 import "../styles/home.css";
 
 import { Link } from "react-router-dom";
+import { getCookie } from "typescript-cookie";
+import { logout } from "../utils/backend";
 
 function App() {
+  let loggedIn = getCookie("username") != undefined && getCookie("username") != "_";
   return (
     <div id="main">
       <h1>AntLogic</h1>
@@ -15,10 +18,20 @@ function App() {
         <Link to={"/levels"}>
           <button className="btn-green main-btn" id="main-btn-play">PLAY</button>
         </Link>
-        <Link to={"/login"}>
-          <button className="btn-green main-btn" id="main-btn-login">LOGIN</button>
-        </Link>
+
+        {
+            loggedIn 
+                ? <></>
+                : <Link to={"/login"}>
+                  <button className="btn-green main-btn" id="main-btn-login">LOGIN</button>
+                </Link>
+        }
       </div>
+      {
+         loggedIn 
+            ? (<button className="btn-green" id="main-btn-logout" onClick={_=> {logout();location.reload();}}>Logout</button>) 
+            : (<></>)
+      }
       <svg
         id="bumi_frontpage"
         width="2002"
