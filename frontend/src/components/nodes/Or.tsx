@@ -58,7 +58,7 @@ const Or = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 17,
           ...handleStyles,
         }}
@@ -68,7 +68,7 @@ const Or = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 50.5,
           ...handleStyles,
         }}
@@ -79,7 +79,7 @@ const Or = () => {
         position={Position.Right}
         style={{
           top: 33.5,
-          right: 1,
+          right: -6,
           ...handleStyles,
         }}
         id="or_out_1"

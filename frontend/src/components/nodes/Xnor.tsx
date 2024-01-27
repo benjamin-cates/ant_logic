@@ -69,7 +69,7 @@ const Xnor = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 17,
           ...handleStyles,
         }}
@@ -79,7 +79,7 @@ const Xnor = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 50.5,
           ...handleStyles,
         }}
@@ -90,7 +90,7 @@ const Xnor = () => {
         position={Position.Right}
         style={{
           top: 33.5,
-          right: 1,
+          right: -6,
           ...handleStyles,
         }}
         id="xnor_out_1"

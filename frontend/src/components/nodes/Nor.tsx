@@ -63,7 +63,7 @@ const Nor = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 17,
           ...handleStyles,
         }}
@@ -73,7 +73,7 @@ const Nor = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 50.5,
           ...handleStyles,
         }}
@@ -84,7 +84,7 @@ const Nor = () => {
         position={Position.Right}
         style={{
           top: 33.5,
-          right: 1,
+          right: -6,
           ...handleStyles,
         }}
         id="nor_out_1"

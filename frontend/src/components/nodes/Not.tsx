@@ -54,7 +54,7 @@ const Not = () => {
         type="target"
         position={Position.Left}
         style={{
-          left: 1,
+          left: -6,
           top: 38,
           ...handleStyles,
         }}
@@ -65,7 +65,7 @@ const Not = () => {
         position={Position.Right}
         style={{
           top: 38,
-          right: 1,
+          right: -6,
           ...handleStyles,
         }}
         id="not_out_1"
