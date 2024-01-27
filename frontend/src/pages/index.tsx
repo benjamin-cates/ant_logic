@@ -21,25 +21,25 @@ function App() {
             PLAY
           </button>
         </Link>
-      </div>
-      {loggedIn ? (
-        <button
-          className="btn-green"
-          id="main-btn-logout"
-          onClick={(_) => {
-            logout();
-            location.reload();
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <Link to={"/login"}>
-          <button className="btn-green main-btn" id="main-btn-login">
-            LOGIN
+        {loggedIn ? (
+          <button
+            className="btn-green"
+            id="main-btn-logout"
+            onClick={(_) => {
+              logout();
+              location.reload();
+            }}
+          >
+            Logout
           </button>
-        </Link>
-      )}
+        ) : (
+          <Link to={"/login"}>
+            <button className="btn-green main-btn" id="main-btn-login">
+              LOGIN
+            </button>
+          </Link>
+        )}
+      </div>
       <svg
         id="bumi_frontpage"
         width="2002"
