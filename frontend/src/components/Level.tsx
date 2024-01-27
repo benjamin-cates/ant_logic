@@ -1,5 +1,6 @@
 import "reactflow/dist/style.css";
 
+import { useCallback, useMemo } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -12,9 +13,9 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { useCallback, useMemo } from "react";
 
 import And from "./nodes/And";
+import Bulb from "./nodes/Bulb";
 import Bumi from "./nodes/Bumi";
 import Nand from "./nodes/Nand";
 import Nor from "./nodes/Nor";
@@ -24,6 +25,13 @@ import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
 
 const initialNodes: Node[] = [
+  {
+    id: "0",
+    position: { x: 0, y: 0 },
+    type: "Bulb",
+    data: { on: true },
+    deletable: false,
+  },
   { id: "1", position: { x: 0, y: 200 }, type: "AND", data: { label: "yes" } },
   {
     id: "2",
@@ -64,6 +72,7 @@ const Level = () => {
       XNOR: Xnor,
       XOR: Xor,
       Bumi,
+      Bulb,
     }),
     []
   );
@@ -134,6 +143,14 @@ const Level = () => {
           color="#555555"
         />
       </ReactFlow>
+      <div
+        style={{
+          fontSize: "12px",
+          fontFamily: "monospace",
+        }}
+      >
+        {JSON.stringify(nodes)}
+      </div>
     </div>
   );
 };
