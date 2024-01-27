@@ -88,6 +88,20 @@ impl UserListing {
                 params![self.username],
             )
     }
+    pub fn update_ownership(
+        username: &str,
+        currency: usize,
+        owned_vals: &Vec<usize>,
+        db: &Mutex<Connection>,
+    ) -> Result<usize, rusqlite::Error> {
+        db.lock()
+            .ok()
+            .ok_or(rusqlite::Error::InvalidQuery)?
+            .execute(
+                "UPDATE users SET currency = ?1, owned_vals = ?2 WHERE username=?3",
+                params![currency, vec_to_str(owned_vals), username,],
+            )
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

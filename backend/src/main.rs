@@ -20,6 +20,7 @@ async fn main() -> std::io::Result<()> {
             .service(scores::post_update_score)
             .service(scores::get_leaderboard)
             .service(user::get_user)
+            .service(user::post_user_update_ownership)
             .app_data(Data::clone(&db_data))
             .app_data(Data::clone(&auth_data))
     })
