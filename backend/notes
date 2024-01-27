@@ -1,0 +1,77 @@
+Update score should also update in the user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GRAVEYARD
+
+    #[allow(dead_code)]
+    pub fn read_all(db: &Mutex<Connection>) -> Result<Vec<Self>, rusqlite::Error> {
+        let binding = db.lock().ok().ok_or(rusqlite::Error::InvalidQuery)?;
+        let mut stmt = binding
+            .prepare("SELECT id, username, email, scores, currency, owned_vals FROM users")?;
+        let mut rows = stmt.query([])?;
+        let mut out = Vec::new();
+        while let Some(row) = rows.next()? {
+            out.push(UserListing {
+                id: row.get(0)?,
+                username: row.get(1)?,
+                email: row.get(2)?,
+                scores: str_to_list(row.get(3)?)?,
+                currency: row.get(4)?,
+                owned_vals: str_to_list(row.get(5)?)?,
+            });
+        }
+        Ok(out)
+    }
