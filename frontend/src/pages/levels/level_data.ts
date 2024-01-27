@@ -35,14 +35,19 @@ function make_bumi(): Node {
 function create_test_function(input_count: number, should_activate: number[]): (nodes: Node[], edges: Edge[]) => number[] {
     return (nodes: Node[], edges: Edge[]) => {
         let wrong_inputs: number[] = [];
+        let bulb_indicies: number[] = [];
+        for(let x = 0; x < input_count; x++) {
+            bulb_indicies.push(nodes.findIndex(node=>node.id=="bulb"+x.toString()));
+        }
+        let old_bulb_states = bulb_indicies.map(idx => nodes[idx].data.on);
         for(let i = 0;i < (1 << input_count); i++) {
             for(let x = 0; x < input_count; x++) {
-                let idx = nodes.findIndex(node=>node.id=="bulb"+x.toString());
-                nodes[idx].data.on = (i & (1 << x)) != 0;
+                nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
             }
-            let output = simulate(nodes,edges).active_nodes.includes("bulb");
+            let output = simulate(nodes,edges).active_nodes.includes("bumi");
             if(output != should_activate.includes(i)) wrong_inputs.push(i);
         }
+        old_bulb_states.forEach((state,idx) => nodes[bulb_indicies[idx]].data.on = state);
         return wrong_inputs;
     }
 }
@@ -55,7 +60,7 @@ const level_data: Level[] = [
             make_bumi(),
         ],
         available_gates: [],
-        testing_function: create_test_function(2, [2]),
+        testing_function: create_test_function(1, [1]),
         prompt: "Welcome to AntLogic! This is Bumi, he is a very hungry anteater who craves electricity, for some unexplained reason. He is very picky about which power sources he eats from, so in most puzzles you will need to use logic gates to direct the flow of power.<br/><br/>Hitting the button on a light switch will turn it on/off. Clicking and dragging from any node square to another will establish a connection. If Bumi is receiving power, he will wag his tounge :)<br/><br/><em>To complete this puzzle, feed Bumi when input A is on, and don't feed him when it's off.</em>"
     },
     {
@@ -66,7 +71,7 @@ const level_data: Level[] = [
             make_bumi(),
         ],
         available_gates: ["AND"],
-        testing_function: create_test_function(2, [2]),
+        testing_function: create_test_function(2, [3]),
         prompt: "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when both inputs are on.</em>"
     },
     {
