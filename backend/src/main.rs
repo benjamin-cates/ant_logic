@@ -12,7 +12,7 @@ async fn main() -> std::io::Result<()> {
     let db_data = Data::new(db);
     let auth = auth::get_auth_init();
     let auth_data = Data::new(auth);
-    println!("Hosting on localhost:8001");
+    println!("Hosting on localhost:8002");
     HttpServer::new(move || {
         App::new()
             .service(auth::post_signup)
@@ -24,7 +24,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::clone(&db_data))
             .app_data(Data::clone(&auth_data))
     })
-    .bind(("127.0.0.1", 8001))?
+    .bind(("127.0.0.1", 8002))?
     .run()
     .await?;
     return Ok(());
