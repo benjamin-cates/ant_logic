@@ -1,11 +1,18 @@
+import { animated, easings, useSpring } from "@react-spring/web";
+import { useEffect, useState } from "react";
 import { Handle, Position } from "reactflow";
-import { handleStyles } from "../../utils/handles";
-import { animated, useSpring, easings} from "@react-spring/web";
-import {useState, useEffect} from "react";
 
-const Bumi = () => {
+import { handleStyles } from "../../utils/handles";
+
+const Bumi = ({ data }: { data: { on: boolean } }) => {
+  const [on] = useState(data.on);
   const [tongueActive, setTongueActive] = useState(false);
-  const { x } = useSpring({ config: { duration: 300, easing: easings.easeInOutSine }, x: tongueActive ? 1 : 0 });
+
+  const { x } = useSpring({
+    config: { duration: 300, easing: easings.easeInOutSine },
+    x: tongueActive ? 1 : 0,
+    pause: !on,
+  });
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -18,7 +25,9 @@ const Bumi = () => {
   useEffect(() => {
     setTongueActive(true);
   }, []);
-    return (<>
+
+  return (
+    <>
       <svg
         width="212"
         height="77"
@@ -33,8 +42,9 @@ const Bumi = () => {
             range: [0, 1],
             output: [
               "M102.444 35.656C102.444 35.656 78.9308 50.7335 51.1787 51.8211C33.15 52.5277 31.4739 44.4668 22.9599 42.3061C16.262 40.6062 4 40.8422 4 40.8422",
-              "M101.444 35.65599C101.444 35.65599 98.9308 31.73348 71.1787 32.82111C53.15 33.52768 41.5 46.5 21.9599 48.3061C14.5 49 3 40.8422 3 40.8422"
-            ]})}
+              "M101.444 35.65599C101.444 35.65599 98.9308 31.73348 71.1787 32.82111C53.15 33.52768 41.5 46.5 21.9599 48.3061C14.5 49 3 40.8422 3 40.8422",
+            ],
+          })}
           stroke="#D35160"
           strokeWidth="5"
           strokeLinecap="round"
