@@ -69,13 +69,7 @@ pub async fn post_signup(
         println!("failed to insert user");
         return HttpResponse::InternalServerError().finish();
     }
-    HttpResponse::Ok()
-        .cookie(
-            Cookie::build("token", token.as_str())
-                .max_age(Duration::days(20))
-                .finish(),
-        )
-        .finish()
+    HttpResponse::Ok().body(token)
 }
 
 #[derive(Deserialize)]
@@ -113,11 +107,5 @@ pub async fn post_login(
     {
         return HttpResponse::Forbidden().finish();
     }
-    HttpResponse::Ok()
-        .cookie(
-            Cookie::build("token", token.as_str())
-                .max_age(Duration::days(20))
-                .finish(),
-        )
-        .finish()
+    HttpResponse::Ok().body(token)
 }
