@@ -71,8 +71,6 @@ const Bulb = ({ id, data }: { id: string; data: { on: boolean } }) => {
         />
       </svg>
 
-      <div>{id}</div>
-      <div>{data.on ? "ON" : "OFF"}</div>
       <Handle
         type="source"
         position={Position.Right}
