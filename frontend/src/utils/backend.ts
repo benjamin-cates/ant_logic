@@ -24,6 +24,11 @@ async function get_user_info(username: string): Promise<User | undefined> {
   return await response.json();
 }
 
+async function logout() {
+  setCookie("username","_");
+  setCookie("token","_");
+}
+
 async function login(username: string, password: string): Promise<Result> {
   const response = await post_request(API_ROOT + "/login", {
     username: username,
@@ -127,4 +132,5 @@ export {
   update_my_currency,
   update_my_leaderboard,
   update_my_ownership,
+  logout,
 };
