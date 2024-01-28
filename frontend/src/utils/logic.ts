@@ -31,7 +31,6 @@ function simulate(nodes: Node[], edges: Edge[]): SimulateOutput {
                 .filter(node => node.source != nodes[index].id)
                 .map(edge => nodes.findIndex(node => node.id == edge.source))
                 .map(index => node_activation[index]);
-            if(nodes[index].type == "AND") console.log(inputs);
             if(inputs.every(input => input != undefined)) {
                 return run_gate(nodes[index].type!,inputs as boolean[]);
             }
