@@ -2,8 +2,8 @@
   margin-top: 1rem;
 }
 #level_prompt {
+  margin-top: 1rem;
   text-align: left;
-  margin: 1rem;
 }
 #level_wrapper {
   width: 99.9vw;
@@ -20,7 +20,11 @@
   width: calc(max(20rem, 50vw));
   height: 100vh;
   background: #555555;
-  padding-bottom: 1rem;
+  padding: 1rem;
+}
+
+#level_side_panel h2 {
+  margin-top: 2rem;
 }
 
 .level_submit_response {
