@@ -39,10 +39,10 @@ h1.leaderboard {
     transition: none;
 }
 .lib_page_btn.lib_page_btn_sel {
-    background: var(--green);
+    background: var(--blue);
 }
 button.lib_page_btn.lib_page_btn_sel:hover {
-    background: var(--green);
+    background: var(--blue);
 }
 button.lib_page_btn:hover {
     transform: scale(1.0);
@@ -56,4 +56,8 @@ button.lib_page_btn:hover {
     margin-top: 11rem;
     margin-left: 10rem;
     transform: scale(2)
+}
+
+#library_header {
+    color: #388697;
 }
