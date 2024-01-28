@@ -1,6 +1,11 @@
+#main.levels-header {
+    margin-top: 0;
+    gap: 0;
+
+}
 .bounding-box {
     width: 800px;
-    height: 500px;
+    height: calc(100vh - 10rem);
     background-color: #444444;
     border-radius: 30px;
     overflow-y: scroll;
