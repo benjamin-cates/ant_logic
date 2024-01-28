@@ -32,7 +32,6 @@ function make_bumi(num_bulbs: number): Node {
     position: { x: 500, y: ((num_bulbs - 1) * 200) / 2 + 20 },
     data: { on: false },
     deletable: false,
-    draggable: false,
     selectable: false,
     positionAbsolute: { x: 0, y: 0 },
   };
