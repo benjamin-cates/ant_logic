@@ -17,12 +17,13 @@ import ReactFlow, {
   useNodesState,
 } from "reactflow";
 
+import { useLocalStorage } from "../hooks/storage.ts";
 import { level_data } from "../pages/levels/level_data.ts";
 import { update_my_leaderboard } from "../utils/backend.ts";
 import { simulate } from "../utils/logic";
 import { useActiveNodes } from "../utils/state.ts";
 import svgs from "../utils/svgs.tsx";
-import Edge from "./Edge.tsx";
+import EdgeType from "./Edge.tsx";
 import And from "./nodes/And";
 import Bulb from "./nodes/Bulb";
 import Bumi from "./nodes/Bumi";
@@ -34,17 +35,28 @@ import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
 
 const edgeTypes = {
-  default: Edge,
+  default: EdgeType,
 };
 
 const Level = () => {
   const [params] = useSearchParams();
   const { index } = useParams() as any;
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(
-    level_data[index].default_nodes
+  const [storage, setStorage] = useLocalStorage("lvl_nodes", {});
+  const levelStorageData = (storage &&
+    storage[index] &&
+    JSON.parse(storage[index])) ?? {
+    edges: [],
+    nodes: [],
+  };
+
+  const [nodes, setNodes, onNodesChange] = useNodesState([
+    ...levelStorageData.nodes,
+    ...level_data[index].default_nodes,
+  ]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    levelStorageData.edges
   );
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [submitMessage, setSubmitMessage] = useState(" ");
   const [isSolved, setIsSolved] = useState(false);
@@ -98,9 +110,37 @@ const Level = () => {
     [nodes, edges]
   );
 
+  const saveData = () => {
+    const serializedLevelData = JSON.stringify({
+      nodes: nodes
+        .filter((node) => !node.type || !["Bumi", "Bulb"].includes(node.type))
+        .map((node) => ({
+          id: node.id,
+          type: node.type,
+          position: node.position,
+          data: node.data,
+        })),
+
+      edges: edges.map((edge) => ({
+        id: edge.id,
+        source: edge.source,
+        sourceHandle: edge.sourceHandle,
+        target: edge.target,
+        targetHandle: edge.targetHandle,
+      })),
+    });
+
+    const newStorage = { ...storage };
+    newStorage[index] = serializedLevelData;
+
+    setStorage(newStorage);
+  };
+
   const onConnect = (connection: Connection) => {
     const newEdge = { ...connection, type: "default" };
     setEdges((eds) => addEdge(newEdge, eds));
+
+    saveData();
   };
 
   useEffect(() => {
@@ -119,14 +159,18 @@ const Level = () => {
   }, [activeNodes]);
 
   const submitCode = () => {
+    saveData();
+
     const wrong_cases = level_data[index].testing_function(nodes, edges);
     if (wrong_cases.length == 0) {
       let score = nodes.length - level_data[index].default_nodes.length;
-      setSubmitMessage("Puzzle solved in " + score + " gate"+ ((score==1)?"":"s") + "!");
+      setSubmitMessage(
+        "Puzzle solved in " + score + " gate" + (score == 1 ? "" : "s") + "!"
+      );
       setIsSolved(true);
       // So the leaderboard doesn't think you didn't solve tutorial puzzle
-      if(score == 0) score = 1;
-      update_my_leaderboard( Number(index), score).then((response) => {
+      if (score == 0) score = 1;
+      update_my_leaderboard(Number(index), score).then((response) => {
         console.log("Update leaderboard response: " + response);
       });
     } else {
@@ -285,8 +329,9 @@ const Level = () => {
           <br />
           Edges: {JSON.stringify(edges.map((e) => e.id))}
           <br />
-          Node Data:{" "}
-          {JSON.stringify(nodes.map(({ id, data }) => [id, data.on]))}
+          Node Data: {JSON.stringify(nodes.map(({ id }) => [id]))}
+          <br />
+          Local Storage: {JSON.stringify(storage)}
         </div>
       )}
     </div>
