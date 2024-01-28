@@ -121,13 +121,12 @@ const Level = () => {
   const submitCode = () => {
     const wrong_cases = level_data[index].testing_function(nodes, edges);
     if (wrong_cases.length == 0) {
-      setSubmitMessage("Puzzle Solved!");
+      let score = nodes.length - level_data[index].default_nodes.length;
+      setSubmitMessage("Puzzle solved in " + score + " gate"+ ((score==1)?"":"s") + "!");
       setIsSolved(true);
-      // Ignore return value
-      update_my_leaderboard(
-        Number(index),
-        1 + nodes.length - level_data[index].default_nodes.length
-      ).then((response) => {
+      // So the leaderboard doesn't think you didn't solve tutorial puzzle
+      if(score == 0) score = 1;
+      update_my_leaderboard( Number(index), score).then((response) => {
         console.log("Update leaderboard response: " + response);
       });
     } else {
