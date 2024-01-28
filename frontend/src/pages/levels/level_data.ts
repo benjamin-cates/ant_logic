@@ -61,7 +61,7 @@ const level_data: Level[] = [
         ],
         available_gates: [],
         testing_function: create_test_function(1, [1]),
-        prompt: "Welcome to AntLogic! This is Bumi, he is a very hungry anteater who craves electricity, for some unexplained reason. He is very picky about which power sources he eats from, so in most puzzles you will need to use logic gates to direct the flow of power.<br/><br/>Hitting the button on a light switch will turn it on/off. Clicking and dragging from any node square to another will establish a connection. If Bumi is receiving power, he will wag his tounge :)<br/><br/><em>To complete this puzzle, feed Bumi when input A is on, and don't feed him when it's off.</em>"
+        prompt: "Welcome to AntLogic! This is Bumi, he is a very hungry anteater who craves electricity, for some unexplained reason. He is very picky about which power sources he eats from, so in most puzzles you will need to use logic gates to direct the flow of power.<br/><br/>Hitting the button on a light switch will turn it on/off. Clicking and dragging from any node square to another will establish a connection. If Bumi is receiving power, he will wag his tounge :)<br/><br/>For puzzles, your solutions must work for <em>every</em> possible input.<br/><br/><em>To complete this puzzle, feed Bumi when input A is on, and don't feed him when it's off.</em>"
     },
     {
         name: "AND gate",

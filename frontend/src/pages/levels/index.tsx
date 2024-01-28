@@ -16,9 +16,6 @@ function Levels() {
   return (
     <div id="main">
       <h1>Levels</h1>
-      <p>
-        This is the levels page. Levels colored green are completed, levels colored yellow are completed but not optimized, and levels colored gray are not completed.
-      </p>
       <div className="bounding-box">
         {
             level_data.map((level, idx) => {

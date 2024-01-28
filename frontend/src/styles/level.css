@@ -44,4 +44,13 @@
   background-color: #666;
   border-radius: 1rem;
   padding: 1rem;
+  font-size: 1.2rem;
+}
+
+#level_back_button {
+  
+}
+
+#level_submit_button {
+  margin-top: 1rem;
 }

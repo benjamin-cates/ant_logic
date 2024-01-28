@@ -65,6 +65,18 @@ p {
   border: none;
 }
 
+.btn-blue {
+  background-color: var(--blue);
+  color: var(--text);
+  border: none;
+}
+
+.btn-gray {
+  background-color: var(--bg-2);
+  color: var(--text);
+  border: none;
+}
+
 .input-login {
   background-color: var(--green);
   color: var(--text);
