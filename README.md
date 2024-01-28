@@ -11,10 +11,10 @@ AntLogic was made as a part of IrvineHacks 2024 with the following team members 
  
 ## Images
 
-Bumi learns DeMorgan's Law:
+### Bumi learns DeMorgan's Law:
 ![Bumi learns DeMorgan's Law](img/demorgans_puzzle_full_screen.png)
 
-Library page to teach boolean logic concepts:
+### Library page to teach boolean logic concepts:
 ![](img/library_bulb.png)
 
 ## Functionality
