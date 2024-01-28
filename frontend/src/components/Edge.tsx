@@ -23,7 +23,7 @@ const Edge = ({
   sourceY: number;
   targetX: number;
   targetY: number;
-  selected: boolean;
+  selected?: boolean;
 }) => {
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
