@@ -49,6 +49,14 @@ const library_pages: LibraryPage[] = [
         name: "XNOR Gate",
         page: <> The XNOR gate is activated if XOR would not be activated under the same inputs; it is equivalent to the biconditional operator, requiring both inputs to be equivalent.<br/><br/>Symbol in logic: ↔</>,
     },
+    {
+        name: "3AND Gate",
+        page: <> The 3AND gate is a 3-input extension of AND that activates if all 3 inputs are true.<br/><br/>Symbol in logic: a ∧ b ∧ c</>,
+    },
+    {
+        name: "3OR Gate",
+        page: <> The 3OR gate is a 3-input extension of OR that activates if at least 1 of 3 inputs are true.<br/><br/>Symbol in logic: a ∨ b ∨ c</>,
+    },
 
 
     
