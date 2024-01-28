@@ -80,14 +80,14 @@ function Library() {
                     library_pages.map((listing, idx) => (
                         <button 
                             key={idx.toString()}
-                            className={`library_page ${idx==pageId ? "library_page_sel" : ""}`}
+                            className={`lib_page_btn ${idx==pageId ? "lib_page_btn_sel" : ""}`}
                             onClick={_=>setPageId(idx)}>
                             {listing.name}
                         </button>
                     ))
                 }
             </div>
-            <div id="leaderboard_scores">
+            <div id="library_page">
                 { library_pages[pageId].page }
             </div>
         </div>
