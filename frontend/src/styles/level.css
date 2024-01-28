@@ -60,3 +60,12 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.react-flow__node {
+  border-radius: 1rem;
+}
+
+.react-flow__node.selectable:focus {
+  outline: 2px dashed #555;
+  outline-offset: 0.5rem;
+}
