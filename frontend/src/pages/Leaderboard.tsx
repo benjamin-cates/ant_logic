@@ -8,7 +8,7 @@ import { level_data, puzzleOrder } from "./levels/level_data";
 
 function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([] as any[]);
-  const [puzzleId, setPuzzleId] = useState(0);
+  const [puzzleId, setPuzzleId] = useState(12);
   useEffect(() => {
     get_leaderboard(puzzleId).then(setLeaderboardData);
   }, [puzzleId]);
