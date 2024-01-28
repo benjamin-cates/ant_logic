@@ -82,3 +82,43 @@ p {
   color: var(--text);
   border: none;
 }
+
+#home-btn {
+  top: 1rem;
+  right: 1rem;
+  fill: #D2D5E1;
+  transition: 0.3s ease;
+  background-color: #768948;
+  border-radius: 15%;
+  padding: .65rem;
+}
+
+#home-btn:hover {
+  transform: scale(1.1);
+}
+
+#library-btn {
+  top: 1rem;
+  right: 4rem;
+  fill: #D2D5E1;
+  transition: 0.3s ease;
+  background-color: #388697;
+  border-radius: 0.5rem;
+  padding: .65rem;
+}
+
+#library-btn:hover {
+  transform: scale(1.1);
+}
+
+#top-bar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 100vw;
+  padding: 1rem;
+  border-radius: 15%;
+  top: 0;
+  right: 0;
+}
