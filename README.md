@@ -11,6 +11,11 @@ AntLogic was made as a part of IrvineHacks 2024 with the following team members 
  
 ## Images
 
+Bumi learns DeMorgan's Law:
+![Bumi learns DeMorgan's Law](img/demorgans_puzzle_full_screen.png)
+
+Library page to teach boolean logic concepts:
+![](img/library_bulb.png)
 
 ## Functionality
 In the level screen, there are lightbulbs on the left that represent the inputs. On the right is Bumi the anteater, who is the output. The goal of each level is to design a circuit whose output pattern exactly matches the description. 
