@@ -63,9 +63,9 @@
 
 .react-flow__node {
   border-radius: 1rem;
+  outline-offset: 0.5rem;
 }
 
 .react-flow__node.selectable:focus {
   outline: 2px dashed #555;
-  outline-offset: 0.5rem;
 }
