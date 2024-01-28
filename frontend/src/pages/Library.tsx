@@ -7,55 +7,101 @@ import svgs from "../utils/svgs";
 interface LibraryPage {
     page: ReactElement
     name: string
+    table: ReactElement | null
 }
 const library_pages: LibraryPage[] = [
     {
         name: "Wires",
         page: <> Wires connect two nodes together.<br/><br/>Click and drag from any output node (right side) to any input node (left side) to establish a connection.<br/><br/>You cannot create cycles between wires (circuits that don't have a definitive start and end), including self-loops.</>,
+        table: null
     },
     {
         name: "Bulb",
         page: <> A bulb is an input source.<br/><br/>Click the button on the bottom of a bulb to turn it on/off.<br/><br/>Your circuit must work correctly for every possible combination of inputs. </>,
+        table: null
     },
     {
         name: "Bumi",
         page: <> Bumi is the anteater you're trying to feed electricity (for some reason)!<br/><br/>We love Bumi 🥰 </>,
+        table: null
     },
     {
         name: "AND Gate",
         page: <> The AND gate is activated if both inputs are activated.<br/><br/>Symbol in logic: ∧ </>,
+        table: 
+        <>
+            <table>
+                <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>A ∧ B</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </>
     },
     {
         name: "OR Gate",
         page: <> The OR gate is activated if at least 1 of the inputs are activated.<br/><br/>Symbol in logic: ∨ </>,
+        table: null
     },
     {
         name: "XOR Gate",
         page: <> The XOR gate is activated if <em>exactly</em> 1 input is activated.<br/><br/>Symbol in logic: ⊕</>,
+        table: null
     },
     {
         name: "NOT Gate",
         page: <> The NOT gate is activated if the input is not activated.<br/><br/>Symbol in logic: ¬</>,
+        table: null
     },
     {
         name: "NOR Gate",
         page: <> The NOR gate is activated if OR would not be activated under the same inputs; neither input can be active.<br/><br/>Symbol in logic: ↓ </>,
+        table: null
     },
     {
         name: "NAND Gate",
         page: <> The NAND gate is activated if AND would not be activated under the same inputs; at <em>most</em> 1 input can be active.<br/><br/>Symbol in logic: ↑</>,
+        table: null
     },
     {
         name: "XNOR Gate",
         page: <> The XNOR gate is activated if XOR would not be activated under the same inputs; it is equivalent to the biconditional operator, requiring both inputs to be equivalent.<br/><br/>Symbol in logic: ↔</>,
+        table: null
     },
     {
         name: "3AND Gate",
         page: <> The 3AND gate is a 3-input extension of AND that activates if all 3 inputs are true.<br/><br/>Symbol in logic: a ∧ b ∧ c</>,
+        table: null
     },
     {
         name: "3OR Gate",
         page: <> The 3OR gate is a 3-input extension of OR that activates if at least 1 of 3 inputs are true.<br/><br/>Symbol in logic: a ∨ b ∨ c</>,
+        table: null
     },
 
 
@@ -104,6 +150,9 @@ function Library() {
                 { library_pages[pageId].page }
                 <div className="library-img">
                     {svgs[library_pages[pageId].name.split(" ")[0]]}
+                </div>
+                <div className="library-table">
+                    { (library_pages[pageId].table != null) && library_pages[pageId].table }
                 </div>
             </div>
         </div>
