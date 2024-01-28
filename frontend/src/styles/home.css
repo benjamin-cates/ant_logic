@@ -38,10 +38,6 @@
   bottom: 0;
 }
 
-#main-btn-play {
-  width: 500px;
-}
-
 #main-btn-logout {
   position: fixed;
   top: 1rem;
