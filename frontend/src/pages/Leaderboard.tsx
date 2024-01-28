@@ -13,6 +13,10 @@ function Leaderboard() {
     get_leaderboard(puzzleId).then(setLeaderboardData);
   }, [puzzleId]);
 
+  const lowestScore = leaderboardData.sort((a, b) =>
+    a.score < b.score ? -1 : 1
+  )[0];
+
   return (
     <>
       <div id="top-bar">
@@ -62,8 +66,16 @@ function Leaderboard() {
         <div id="leaderboard_scores">
           {leaderboardData.map((listing, idx) => (
             <div key={idx.toString()} className="leaderboard_listing">
+              <div
+                className="leaderboard_score"
+                style={{
+                  color:
+                    listing.score == lowestScore.score ? "#F3E597" : "#d2d5e1",
+                }}
+              >
+                {listing.score}
+              </div>
               <div className="leaderboard_username">{listing.username}</div>
-              <div className="leaderboard_score">{listing.score}</div>
             </div>
           ))}
         </div>
