@@ -50,7 +50,9 @@ const puzzleOrder = [
     6, // Feeding Time
     7, // Prime number
     10, // Odd numbers
+    13, // Functional completeness
     8, // XOR v2
+    14, // Functional completeness v2
     9, // Prime numbers v2
 ];
 
@@ -252,6 +254,35 @@ const level_data: Level[] = [
     prompt:
       "Bumi's teacher is introducing a new boolean opertor: the biconditional operator! This operator returns true if and only if both inputs are equal. The corresponding gate for this is XNOR, however the zoo couldn't get a shipment in fast enough before Bumi's next test! Create a logic gate that's equivalent to the XNOR using the gates you have right now.",
     difficulty: "easy",
+  },
+  {
+    name: "Functional completeness",
+    default_nodes: [
+      make_bulb(0, "Input a"),
+      make_bulb(1, "Input b"),
+      make_bulb(2, "(a AND b) Claim"),
+      make_bumi(3),
+    ],
+    available_gates: ["NAND"],
+    testing_function: create_test_function(3, [0, 1, 2, 7]),
+    prompt:
+      "Bumi's teacher has recently been covering \"functionally complete sets\" which are sets of logic gates that can create all other possible logic gates. Surprisingly, NAND itself is functionally complete because you can construct all other logic gates with it. In this exercise Bumi has to compare the actual value of \"a AND b\" with the <em>claimed</em> value of \"a AND b\". If the claim value is correct, activate his tongue. Use only NAND gates.",
+    difficulty: "medium",
+  },
+  {
+    name: "Functional completeness v2",
+    default_nodes: [
+      make_bulb(0, "Input A"),
+      make_bulb(1, "Input B"),
+      make_bulb(2, "(a and b) Claim"),
+      make_bulb(3, "(a or b) Claim"),
+      make_bumi(3),
+    ],
+    available_gates: ["NAND"],
+    testing_function: create_test_function(4, [0, 9, 10, 15]),
+    prompt:
+      "Continuing the functional completeness problem from before, Bumi want's to make sure that NAND gates can also be constructed an OR gate. Given input a, b, (a AND b) claim, and (a OR b) claim, return true if and only if both of the claims are correct. For example,<br>a = false<br>b = true<br>(a AND b claim) = true<br>(a OR b) claim = true<br>should return false because the (a AND b) claim does not match the true value of (a AND b)}",
+    difficulty: "hard",
   },
 ];
 
