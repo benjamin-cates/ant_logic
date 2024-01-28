@@ -16,6 +16,7 @@ import ReactFlow, {
 } from "reactflow";
 
 import { level_data } from "../pages/levels/level_data.ts";
+import { update_my_leaderboard } from "../utils/backend.ts";
 import { simulate } from "../utils/logic";
 import { useActiveNodes } from "../utils/state.ts";
 import svgs from "../utils/svgs.tsx";
@@ -28,7 +29,6 @@ import Not from "./nodes/Not";
 import Or from "./nodes/Or";
 import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
-import { update_my_leaderboard } from "../utils/backend.ts";
 
 const Level = () => {
   const [params] = useSearchParams();
@@ -112,16 +112,28 @@ const Level = () => {
 
   const submitCode = () => {
     const wrong_cases = level_data[index].testing_function(nodes, edges);
-    if(wrong_cases.length == 0) {
-        setSubmitMessage("Success");
-        setIsSolved(true);
-        // Ignore return value
-        update_my_leaderboard(Number(index),1 + nodes.length-level_data[index].default_nodes.length).then(response => {
-            console.log("Update leaderboard response: "+response);
-        });
-    }
-    else {
-        setSubmitMessage("Your solution doesn't work for " + wrong_cases.length + " case"+((wrong_cases.length==1)?"":"s")+". Hint: have you tried a solution where the inputs spell out " + wrong_cases[0].toString(2).padStart(level_data[index].default_nodes.length-1,'0') + " in binary?");
+    if (wrong_cases.length == 0) {
+      setSubmitMessage("Puzzle Solved!");
+      setIsSolved(true);
+      // Ignore return value
+      update_my_leaderboard(
+        Number(index),
+        1 + nodes.length - level_data[index].default_nodes.length
+      ).then((response) => {
+        console.log("Update leaderboard response: " + response);
+      });
+    } else {
+      setSubmitMessage(
+        "Your solution doesn't work for " +
+          wrong_cases.length +
+          " case" +
+          (wrong_cases.length == 1 ? "" : "s") +
+          ". Hint: have you tried a solution where the inputs spell out " +
+          wrong_cases[0]
+            .toString(2)
+            .padStart(level_data[index].default_nodes.length - 1, "0") +
+          " in binary?"
+      );
     }
   };
 
@@ -205,10 +217,19 @@ const Level = () => {
         >
           Submit
         </button>
-        <div className="level_submit_response">{submitMessage}</div>
-        {
-            isSolved && <a href={"/levels/" + (Number(index)+1).toString()}><button className="btn-blue">Next Puzzle</button></a>
-        }
+        <div
+          className="level_submit_response"
+          style={{
+            color: isSolved ? "#D2D5E1" : "#D35160",
+          }}
+        >
+          {submitMessage}
+        </div>
+        {isSolved && (
+          <a href={"/levels/" + (Number(index) + 1).toString()}>
+            <button className="btn-green">Next Puzzle</button>
+          </a>
+        )}
       </div>
       <ReactFlow
         nodes={nodes}

@@ -83,7 +83,7 @@ function Levels() {
         </Link>
       </div>
 
-      <h1 id="levels-header">Levels</h1>
+      <h1 id="levels-header">Puzzles</h1>
       <div className="bounding-box">
         {level_data.map((level, idx) => {
           return (

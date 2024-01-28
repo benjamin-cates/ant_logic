@@ -20,6 +20,11 @@
   width: calc(max(20rem, 50vw));
   height: 100vh;
   background: #555555;
+  padding-bottom: 1rem;
+}
+
+.level_submit_response {
+  margin-bottom: 1rem;
 }
 
 .inventory_buttons {
