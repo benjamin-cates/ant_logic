@@ -10,21 +10,39 @@ interface LibraryPage {
 const library_pages: LibraryPage[] = [
     {
         name: "Wires",
-        page: <>
-            Wires connect two nodes together. 
-        </>,
+        page: <> Wires connect two nodes together. </>,
+    },
+    {
+        name: "Bulb",
+        page: <> A bulb is an input source. </>,
+    },
+    {
+        name: "Bumi",
+        page: <> Bumi is the anteater you're trying to feed electricity (for some reason)! </>,
     },
     {
         name: "AND Gate",
-        page: <> The AND gate is activated if and only if both inputs are activated. </>,
+        page: <> The AND gate is activated if both inputs are activated. </>,
     },
     {
         name: "OR Gate",
-        page: <> The OR gate is activated if either of the inputs are activated, or both. </>,
+        page: <> The OR gate is activated if at least 1 of the inputs are activated. </>,
     },
     {
         name: "XOR Gate",
-        page: <> The XOR gate is activated if only one of the inputs is activated, but not if both are activated. </>,
+        page: <> The XOR gate is activated if <em>exactly</em> 1 input is activated </>,
+    },
+    {
+        name: "NOR Gate",
+        page: <> The NOR gate is activated if OR would not be activated under the same inputs; neither input can be active. </>,
+    },
+    {
+        name: "NAND Gate",
+        page: <> The NAND gate is activated if AND would not be activated under the same inputs; at <em>most</em> 1 input can be active. </>,
+    },
+    {
+        name: "XNOR Gate",
+        page: <> The XNOR gate is activated if XOR would not be activated under the same inputs; it is equivalent to the biconditional operator, requiring both inputs to be equivalent. </>,
     },
 
 
