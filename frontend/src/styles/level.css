@@ -74,3 +74,8 @@
 .react-flow__node.selectable:focus {
   outline: 2px dashed #555;
 }
+
+#c_a_d {
+  color: #777;
+  font-size: 0.75rem;
+}
