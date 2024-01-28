@@ -64,6 +64,18 @@ function App() {
               </button>
             </Link>
           )}
+          <div id="main-secondary-btns">
+          <Link to={"/leaderboard"}>
+            <button className="btn-blue" id="main-btn-leaderboard">
+              Leaderboard
+            </button>
+          </Link>
+          <Link to={"/library"}>
+            <button className="btn-blue" id="main-btn-library">
+              Library
+            </button>
+          </Link>
+          </div>
         </div>
 
         <p id="bumi_frontpage_label">(bumi)</p>
@@ -102,13 +114,6 @@ function App() {
           />
         </svg>
       </div>
-      {loggedIn && (
-        <Link to={"/leaderboard"}>
-          <button className="btn-blue" id="main-btn-leaderboard">
-            Leaderboard
-          </button>
-        </Link>
-      )}
     </>
   );
 }
