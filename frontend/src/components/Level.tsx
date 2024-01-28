@@ -316,6 +316,18 @@ const Level = () => {
         />
       </ReactFlow>
 
+      <button
+        id="clear"
+        className="btn-gray"
+        onClick={() => {
+          setNodes(level_data[index].default_nodes);
+          setEdges([]);
+          setStorage({ ...storage, [index]: null });
+        }}
+      >
+        Clear
+      </button>
+
       {params.get("dev") == "true" && (
         <div
           id="debug_info"
