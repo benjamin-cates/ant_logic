@@ -75,6 +75,13 @@
   font-size: 0.75rem;
 }
 
+#clear {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 1rem;
+}
+
 .react-flow__node {
   border-radius: 1rem;
   outline-offset: 0.5rem;
