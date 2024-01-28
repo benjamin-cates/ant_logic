@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { get_leaderboard } from "../utils/backend";
-import { level_data } from "./levels/level_data";
+import { level_data, puzzleOrder } from "./levels/level_data";
 
 function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([] as any[]);
@@ -51,15 +51,15 @@ function Leaderboard() {
       <h1 className="leaderboard">Leaderboard</h1>
       <div id="main" className="leaderboard">
         <div id="leaderboard_puzzles">
-          {level_data.map((listing, idx) => (
+          {puzzleOrder.map((thisId, idx) => (
             <button
               key={idx.toString()}
               className={`leaderboard_puzzle ${
-                idx == puzzleId ? "leaderboard_puz_sel" : ""
+                thisId == puzzleId ? "leaderboard_puz_sel" : ""
               }`}
-              onClick={(_) => setPuzzleId(idx)}
+              onClick={(_) => setPuzzleId(thisId)}
             >
-              {listing.name}
+              {level_data[thisId].name}
             </button>
           )).slice(1)}
         </div>

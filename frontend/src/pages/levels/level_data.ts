@@ -38,6 +38,25 @@ function make_bumi(num_bulbs: number): Node {
   };
 }
 
+const puzzleOrder = [
+    0, // Tutorial
+    1, // AND gate
+    2, // OR gate
+    3, // NOT gate
+    4, // XOR gate
+    5, // isFive(x)
+    11, // Demorgan's
+    6, // Feeding Time
+    7, // Prime number
+    10, // Odd numbers
+    8, // XOR v2
+    9, // Prime numbers v2
+];
+
+function nextPuzzle(id: number): number {
+    return puzzleOrder[puzzleOrder.indexOf(id) + 1];
+}
+
 function create_test_function(input_count: number, should_activate: number[]): (nodes: Node[], edges: Edge[]) => number[] {
     return (nodes: Node[], edges: Edge[]) => {
         let wrong_inputs: number[] = [];
@@ -168,7 +187,7 @@ const level_data: Level[] = [
     available_gates: ["NAND"],
     testing_function: create_test_function(2, [1, 2]),
     prompt:
-      "Bumi needs reinforcement on his XOR exercise. If you forgot, only turn the light on if either one of the lights is on, but not both. However, it seems that you have run out of ant gates except for NAND gates until the next shipment comes! Build this circuit using only NAND gates",
+      "Bumi needs reinforcement on his XOR exercise. If you forgot, only turn the light on if either one of the lights is on, but not both. However, it seems that you have run out of ant gates except for NAND gates until the next shipment comes! Build this circuit using only NAND gates.",
     difficulty: "hard",
   },
   {
@@ -204,9 +223,22 @@ const level_data: Level[] = [
       ]
     ),
     prompt:
-      "In Bumi’s math class, he is learning about odd numbers and counting. To train him, he is given 5 light bulbs and only given food when an odd number of bulbs are lit up. Build an ant circuit that accomplishes this",
+      "In Bumi’s math class, he is learning about odd numbers and counting. To train him, he is given 5 light bulbs and only given food when an odd number of bulbs are lit up. Build an ant circuit that accomplishes this.",
     difficulty: "medium",
+  },
+  {
+    name: "DeMorgan's Law",
+    default_nodes: [
+      make_bulb(0, "Input A"),
+      make_bulb(1, "Input B"),
+      make_bumi(2),
+    ],
+    available_gates: ["OR", "NOT"],
+    testing_function: create_test_function(2, [3]),
+    prompt:
+      "According to Bumi's Boolean Logic teacher, an AND gate can be constructed with just NOT gates and OR gates. To give Bumi a head start, his teacher said that DeMorgan's Law is NOT(a OR b) ≡ NOT(a) AND NOT(b). Create an ant circuit that simulates an AND gate using only OR gates and NOT gates.",
+    difficulty: "easy",
   },
 ];
 
-export { level_data };
+export { level_data, puzzleOrder, nextPuzzle};

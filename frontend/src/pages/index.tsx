@@ -41,29 +41,31 @@ function App() {
           conditions.
         </p>
         <div className="main-btns">
-          <Link to={"/levels"}>
-            <button className="btn-green main-btn" id="main-btn-play">
-              Play
-            </button>
-          </Link>
-          {loggedIn ? (
-            <button
-              className="btn-green"
-              id="main-btn-logout"
-              onClick={() => {
-                logout();
-                location.reload();
-              }}
-            >
-              Logout
-            </button>
-          ) : (
-            <Link to={"/login"}>
-              <button className="btn-gray main-btn" id="main-btn-login">
-                Log In
-              </button>
-            </Link>
-          )}
+          <div style={{display: "flex", flexDirection: "row", gap: "0.8rem", width: "30rem", justifyContent: "center"}}>
+              <Link to={"/levels"}>
+                <button className="btn-green main-btn" id="main-btn-play" style={loggedIn?{width: "30rem"}:{}}>
+                  Play
+                </button>
+              </Link>
+              {loggedIn ? (
+                <button
+                  className="btn-green"
+                  id="main-btn-logout"
+                  onClick={() => {
+                    logout();
+                    location.reload();
+                  }}
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link to={"/login"}>
+                  <button className="btn-gray main-btn" id="main-btn-login">
+                    Log In
+                  </button>
+                </Link>
+              )}
+          </div>
           <div id="main-secondary-btns">
           <Link to={"/leaderboard"}>
             <button className="btn-blue" id="main-btn-leaderboard">

@@ -16,9 +16,9 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
 } from "reactflow";
+import { level_data, nextPuzzle } from "../pages/levels/level_data.ts";
 
 import { useLocalStorage } from "../hooks/storage.ts";
-import { level_data } from "../pages/levels/level_data.ts";
 import { update_my_leaderboard } from "../utils/backend.ts";
 import { simulate } from "../utils/logic";
 import { useActiveNodes } from "../utils/state.ts";
@@ -278,7 +278,7 @@ const Level = () => {
           {submitMessage}
         </div>
         {isSolved && (
-          <a href={"/levels/" + (Number(index) + 1).toString()}>
+          <a href={"/levels/" + nextPuzzle(Number(index))}>
             <button className="btn-green">Next Puzzle</button>
           </a>
         )}
