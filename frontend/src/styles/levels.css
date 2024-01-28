@@ -28,3 +28,15 @@
 a {
     display: block;
 }
+
+#home-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    fill: #768948;
+    transition: 0.3s ease;
+}
+
+#home-btn:hover {
+    transform: scale(1.1);
+}
