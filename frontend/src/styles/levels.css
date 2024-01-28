@@ -6,27 +6,34 @@
   width: 800px;
   height: calc(100vh - 10rem);
   background-color: #444444;
-  border-radius: 30px;
+  border-radius: 1rem;
   overflow-y: scroll;
-  padding-top: 40px;
-  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0.5rem;
+  padding: 1rem;
   align-items: center;
   margin-bottom: 2rem;
 }
+
+.bounding-box a {
+  width: 100%;
+}
+
 .lvl-completed.lvl-btn {
   background-color: var(--green);
 }
 
 .lvl-btn {
   font-size: 2rem;
-  width: 600px;
+  width: 100%;
   border: none;
   background-color: #333;
-  color: #d2d5e1;
-  transition: background-color 0.5s ease-in-out;
+  color: #eeeeee;
+}
+
+.lvl-btn:hover {
+  transform: scale(1.025);
 }
 
 a {

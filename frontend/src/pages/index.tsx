@@ -43,14 +43,14 @@ function App() {
         <div className="main-btns">
           <Link to={"/levels"}>
             <button className="btn-green main-btn" id="main-btn-play">
-              PLAY
+              Play
             </button>
           </Link>
           {loggedIn ? (
             <button
               className="btn-green"
               id="main-btn-logout"
-              onClick={(_) => {
+              onClick={() => {
                 logout();
                 location.reload();
               }}
@@ -59,8 +59,8 @@ function App() {
             </button>
           ) : (
             <Link to={"/login"}>
-              <button className="btn-green main-btn" id="main-btn-login">
-                LOGIN
+              <button className="btn-gray main-btn" id="main-btn-login">
+                Log In
               </button>
             </Link>
           )}
@@ -105,7 +105,7 @@ function App() {
       {loggedIn && (
         <Link to={"/leaderboard"}>
           <button className="btn-blue" id="main-btn-leaderboard">
-            LEADERBOARD
+            Leaderboard
           </button>
         </Link>
       )}

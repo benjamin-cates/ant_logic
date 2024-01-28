@@ -12,6 +12,7 @@
 .main-btn {
   font-size: 3rem;
   flex: 0;
+  white-space: nowrap;
 }
 
 .main-btns {

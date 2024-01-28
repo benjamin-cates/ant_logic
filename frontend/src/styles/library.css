@@ -1,63 +1,63 @@
 h1.leaderboard {
-    margin-top: 3.5rem;
+  margin-top: 3.5rem;
 }
 
 #main.library {
-    background: #555555;
-    display: flex;
-    flex-direction: row;
-    gap: unset;
-    align-items: stretch;
-    height: calc(100vh - 15rem);
-    border-radius: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  background: #555555;
+  display: flex;
+  flex-direction: row;
+  gap: unset;
+  align-items: stretch;
+  height: calc(100vh - 15rem);
+  border-radius: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 #library_pages {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    gap: 0.5rem;
-    padding: 0.5rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 #library_page {
-    width: 60%;
-    overflow-y: auto;
-    height: 100%;
-    padding: 2rem;
-    text-align: left;
-    font-size: 1.2rem;
-
+  width: 60%;
+  overflow-y: auto;
+  height: 100%;
+  padding: 2rem;
+  text-align: left;
+  font-size: 1.2rem;
 }
 
 .lib_page_btn {
-    background: #3E3E3E;
-    color: #EEEEEE;
-    text-align: left;
-    border: none;
-    transition: none;
+  background: #3e3e3e;
+  color: #eeeeee;
+  text-align: left;
+  border: none;
+  transition: none;
+  padding: 0.5rem 1rem;
 }
 .lib_page_btn.lib_page_btn_sel {
-    background: var(--blue);
+  background: var(--blue);
 }
 button.lib_page_btn.lib_page_btn_sel:hover {
-    background: var(--blue);
+  background: var(--blue);
 }
 button.lib_page_btn:hover {
-    transform: scale(1.0);
-    background: #444444;
+  transform: scale(1);
+  background: #444444;
 }
 
 .library-img {
-    /* background-color: red; */
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 11rem;
-    margin-left: 10rem;
-    transform: scale(2)
+  /* background-color: red; */
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 11rem;
+  margin-left: 10rem;
+  transform: scale(2);
 }
 
 #library_header {
-    color: #388697;
+  color: #388697;
 }

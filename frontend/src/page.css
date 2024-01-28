@@ -78,7 +78,7 @@ p {
 }
 
 .input-login {
-  background-color: var(--green);
+  background-color: var(--bg-2);
   color: var(--text);
   border: none;
 }
@@ -86,11 +86,11 @@ p {
 #home-btn {
   top: 1rem;
   right: 1rem;
-  fill: #D2D5E1;
+  fill: #d2d5e1;
   transition: 0.3s ease;
   background-color: #768948;
   border-radius: 15%;
-  padding: .65rem;
+  padding: 0.65rem;
 }
 
 #home-btn:hover {
@@ -100,11 +100,11 @@ p {
 #library-btn {
   top: 1rem;
   right: 4rem;
-  fill: #D2D5E1;
+  fill: #d2d5e1;
   transition: 0.3s ease;
   background-color: #388697;
   border-radius: 0.5rem;
-  padding: .65rem;
+  padding: 0.65rem;
 }
 
 #library-btn:hover {
