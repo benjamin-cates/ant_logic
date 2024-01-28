@@ -18,6 +18,7 @@ import ReactFlow, {
 import { level_data } from "../pages/levels/level_data.ts";
 import { simulate } from "../utils/logic";
 import { useActiveNodes } from "../utils/state.ts";
+import svgs from "../utils/svgs.tsx";
 import And from "./nodes/And";
 import Bulb from "./nodes/Bulb";
 import Bumi from "./nodes/Bumi";
@@ -104,8 +105,6 @@ const Level = () => {
       }
       return newNodes;
     });
-
-    console.log("Updated active nodes:", activeNodes);
   }, [activeNodes]);
 
   const submitCode = () => {
@@ -149,11 +148,31 @@ const Level = () => {
     <div id="level_wrapper" style={{}}>
       <div id="level_side_panel">
         <Link to={"/levels"}>
-          <button id="level_back_button" className="btn-gray">← Back to Level Menu</button>
+          <button id="level_back_button" className="btn-gray">
+            ← Back to Level Menu
+          </button>
         </Link>
-        <p dangerouslySetInnerHTML={{__html: level_data[index].prompt}} id="level_prompt"></p>
+        <p
+          dangerouslySetInnerHTML={{ __html: level_data[index].prompt }}
+          id="level_prompt"
+        ></p>
         <h2>Inventory</h2>
-        <div id="inventory_buttons">
+        {level_data[index].available_gates.length == 0 && (
+          <p
+            style={{
+              textAlign: "center",
+              width: "100%",
+              marginTop: "1rem",
+              fontSize: "1.2rem",
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+            }}
+          >
+            Oops! Looks like your inventory is empty! Complete this level with
+            wires only.
+          </p>
+        )}
+        <div className="inventory_buttons">
           {level_data[index].available_gates.map((name) => (
             <div
               draggable
@@ -161,11 +180,15 @@ const Level = () => {
               onDragStart={(event) => onDragStart(event, name)}
               key={name}
             >
-              {name}
+              {svgs[name]}
             </div>
           ))}
         </div>
-        <button id="level_submit_button" className="btn-blue" onClick={submitCode}>
+        <button
+          id="level_submit_button"
+          className="btn-blue"
+          onClick={submitCode}
+        >
           Submit
         </button>
       </div>
@@ -179,6 +202,7 @@ const Level = () => {
         onInit={setReactFlowInstance as any}
         isValidConnection={isValidConnection}
         connectionMode={ConnectionMode.Strict}
+        fitView
         defaultEdgeOptions={{
           animated: true,
           style: {

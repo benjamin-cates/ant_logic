@@ -16,21 +16,30 @@
   top: 0;
 }
 #level_side_panel {
+  overflow-y: scroll;
   width: calc(max(20rem, 50vw));
   height: 100vh;
   background: #555555;
 }
-.inventory_button {
-  width: calc(100% - 4rem);
-  margin: 0.4rem 2rem 0.4rem 2rem;
+
+.inventory_buttons {
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5 rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
 }
+
 .inventory_button {
-  background: #eeeeee;
-  color: #000000;
+  padding: 0.4rem;
 }
-.inventory_button:hover {
-  transform: scale(1);
-  background: #d0d0d0;
+
+.inventory_button svg {
+  width: 100%;
+  height: 100%;
 }
 
 #debug_info {
@@ -40,17 +49,14 @@
   text-align: right;
 }
 
-#level_prompt{
+#level_prompt {
   background-color: #666;
   border-radius: 1rem;
   padding: 1rem;
   font-size: 1.2rem;
 }
 
-#level_back_button {
-  
-}
-
 #level_submit_button {
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }

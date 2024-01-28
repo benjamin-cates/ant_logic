@@ -19,11 +19,11 @@ function make_bulb(id: number, label: string): Node {
     };
 }
 
-function make_bumi(): Node {
+function make_bumi(num_bulbs: number): Node {
     return {
         id: "bumi",
         type: "Bumi",
-        position: {x: 500, y: 100},
+        position: {x: 500, y: (num_bulbs - 1) * 200 / 2 + 20},
         data: {on: false},
         deletable: false,
         draggable: false,
@@ -57,7 +57,7 @@ const level_data: Level[] = [
         name: "Tutorial",
         default_nodes: [
             make_bulb(0, "Input A"),
-            make_bumi(),
+            make_bumi(1),
         ],
         available_gates: [],
         testing_function: create_test_function(1, [1]),
@@ -68,7 +68,7 @@ const level_data: Level[] = [
         default_nodes: [
             make_bulb(0, "Input A"),
             make_bulb(1, "Input B"),
-            make_bumi(),
+            make_bumi(2),
         ],
         available_gates: ["AND"],
         testing_function: create_test_function(2, [3]),
@@ -79,7 +79,7 @@ const level_data: Level[] = [
         default_nodes: [
             make_bulb(0, "Input A"),
             make_bulb(1, "Input B"),
-            make_bumi(),
+            make_bumi(2),
         ],
         available_gates: ["OR"],
         testing_function: create_test_function(2, [2]),
@@ -89,7 +89,7 @@ const level_data: Level[] = [
         name: "NOT gate",
         default_nodes: [
             make_bulb(0, "Input A"),
-            make_bumi(),
+            make_bumi(1),
         ],
         available_gates: ["NOT"],
         testing_function: create_test_function(2, [2]),
@@ -100,7 +100,7 @@ const level_data: Level[] = [
         default_nodes: [
             make_bulb(0, "Input A"),
             make_bulb(1, "Input B"),
-            make_bumi(),
+            make_bumi(2),
         ],
         available_gates: ["AND", "OR", "NOT"],
         testing_function: create_test_function(2, [1,2]),
@@ -112,7 +112,7 @@ const level_data: Level[] = [
             make_bulb(0, "Input A (001)"),
             make_bulb(1, "Input B (010)"),
             make_bulb(2, "Input C (100)"),
-            make_bumi(),
+            make_bumi(3),
         ],
         available_gates: ["AND", "OR", "NOT"],
         testing_function: create_test_function(3, [5]),
@@ -124,7 +124,7 @@ const level_data: Level[] = [
             make_bulb(0, "Breakfast"),
             make_bulb(1, "Lunch"),
             make_bulb(2, "Dinner"),
-            make_bumi(),
+            make_bumi(3),
         ],
         available_gates: ["AND", "OR", "NOT", "XOR"],
         testing_function: create_test_function(3, [1,2,4]),
@@ -136,7 +136,7 @@ const level_data: Level[] = [
             make_bulb(0, "Bit A (001)"),
             make_bulb(1, "Bit B (010)"),
             make_bulb(2, "Bit C (100)"),
-            make_bumi(),
+            make_bumi(3),
         ],
         available_gates: ["AND", "OR", "NOT", "XOR"],
         testing_function: create_test_function(3, [2,3,5,7]),
@@ -147,7 +147,7 @@ const level_data: Level[] = [
         default_nodes: [
             make_bulb(0, "Input A"),
             make_bulb(1, "Input B"),
-            make_bumi(),
+            make_bumi(2),
         ],
         available_gates: ["NAND"],
         testing_function: create_test_function(2, [1,2]),
@@ -159,7 +159,7 @@ const level_data: Level[] = [
             make_bulb(0, "Bit A (001)"),
             make_bulb(1, "Bit B (010)"),
             make_bulb(2, "Bit C (100)"),
-            make_bumi(),
+            make_bumi(3),
         ],
         available_gates: ["NOR"],
         testing_function: create_test_function(3, [2,3,5,7]),
@@ -173,7 +173,7 @@ const level_data: Level[] = [
             make_bulb(2, "Input C"),
             make_bulb(3, "Input D"),
             make_bulb(4, "Input E"),
-            make_bumi(),
+            make_bumi(5),
         ],
         available_gates: ["NOR"],
         testing_function: create_test_function(3, [0b00001, 0b00010, 0b00100, 0b01000, 0b10000, 0b00111, 0b01110, 0b11100, 0b01101, 0b11001, 0b11010, 0b01011, 0b10011, 0b10110, 0b10101, 0b1111]),
