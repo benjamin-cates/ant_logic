@@ -175,7 +175,7 @@ const Level = () => {
       <div id="level_side_panel">
         <Link to={"/levels"}>
           <button id="level_back_button" className="btn-gray">
-            ← Back to Level Menu
+            ← Back to Puzzle Menu
           </button>
         </Link>
         <p
