@@ -50,12 +50,12 @@ button.lib_page_btn:hover {
 }
 
 .library-img {
-  /* background-color: red; */
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 11rem;
-  margin-left: 10rem;
-  transform: scale(2);
+  margin-top: 2rem;
+}
+
+.library-img svg {
+  width: 100%;
+  height: 6rem;
 }
 
 #library_header {
