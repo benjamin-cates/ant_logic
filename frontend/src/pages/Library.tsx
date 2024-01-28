@@ -285,7 +285,7 @@ function Library() {
               className={`lib_page_btn ${
                 idx == pageId ? "lib_page_btn_sel" : ""
               }`}
-              onClick={(_) => setPageId(idx)}
+              onClick={() => setPageId(idx)}
             >
               {listing.name}
             </button>

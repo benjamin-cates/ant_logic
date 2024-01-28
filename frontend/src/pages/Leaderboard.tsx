@@ -1,10 +1,10 @@
 import "../styles/leaderboard.css";
 
 import { useEffect, useState } from "react";
+import { level_data, puzzleOrder } from "./levels/level_data";
 
 import { Link } from "react-router-dom";
 import { get_leaderboard } from "../utils/backend";
-import { level_data, puzzleOrder } from "./levels/level_data";
 
 function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([] as any[]);
@@ -51,17 +51,19 @@ function Leaderboard() {
       <h1 className="leaderboard">Leaderboard</h1>
       <div id="main" className="leaderboard">
         <div id="leaderboard_puzzles">
-          {puzzleOrder.map((thisId, idx) => (
-            <button
-              key={idx.toString()}
-              className={`leaderboard_puzzle ${
-                thisId == puzzleId ? "leaderboard_puz_sel" : ""
-              }`}
-              onClick={(_) => setPuzzleId(thisId)}
-            >
-              {level_data[thisId].name}
-            </button>
-          )).slice(1)}
+          {puzzleOrder
+            .map((thisId, idx) => (
+              <button
+                key={idx.toString()}
+                className={`leaderboard_puzzle ${
+                  thisId == puzzleId ? "leaderboard_puz_sel" : ""
+                }`}
+                onClick={() => setPuzzleId(thisId)}
+              >
+                {level_data[thisId].name}
+              </button>
+            ))
+            .slice(1)}
         </div>
         <div id="leaderboard_scores">
           {leaderboardData.map((listing, idx) => (

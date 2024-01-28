@@ -2,7 +2,6 @@ import { Edge, Node } from "reactflow";
 
 import { simulate } from "../../utils/logic";
 
-
 type Difficulty = "intro" | "easy" | "medium" | "hard";
 
 interface Level {
@@ -11,8 +10,8 @@ interface Level {
   available_gates: string[];
   prompt: string;
   name: string;
-  difficulty: Difficulty,
-} 
+  difficulty: Difficulty;
+}
 
 function make_bulb(id: number, label: string): Node {
   return {
@@ -38,45 +37,52 @@ function make_bumi(num_bulbs: number): Node {
 }
 
 const puzzleOrder = [
-    0, // Tutorial
-    1, // AND gate
-    2, // OR gate
-    3, // NOT gate
-    4, // XOR gate
-    5, // isFive(x)
-    11, // Demorgan's
-    12, // Biconditional Operator
-    6, // Feeding Time
-    7, // Prime number
-    10, // Odd numbers
-    13, // Functional completeness
-    8, // XOR v2
-    14, // Functional completeness v2
-    9, // Prime numbers v2
+  0, // Tutorial
+  1, // AND gate
+  2, // OR gate
+  3, // NOT gate
+  4, // XOR gate
+  5, // isFive(x)
+  11, // Demorgan's
+  12, // Biconditional Operator
+  6, // Feeding Time
+  7, // Prime number
+  10, // Odd numbers
+  13, // Functional completeness
+  8, // XOR v2
+  14, // Functional completeness v2
+  9, // Prime numbers v2
 ];
 
 function nextPuzzle(id: number): number {
-    return puzzleOrder[puzzleOrder.indexOf(id) + 1];
+  return puzzleOrder[puzzleOrder.indexOf(id) + 1];
 }
 
-function create_test_function(input_count: number, should_activate: number[]): (nodes: Node[], edges: Edge[]) => number[] {
-    return (nodes: Node[], edges: Edge[]) => {
-        let wrong_inputs: number[] = [];
-        let bulb_indicies: number[] = [];
-        for(let x = 0; x < input_count; x++) {
-            bulb_indicies.push(nodes.findIndex(node=>node.id=="bulb"+x.toString()));
-        }
-        let old_bulb_states = bulb_indicies.map(idx => nodes[idx].data.on);
-        for(let i = 0;i < (1 << input_count); i++) {
-            for(let x = 0; x < input_count; x++) {
-                nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
-            }
-            let output = simulate(nodes,edges).active_nodes.includes("bumi");
-            if(output != should_activate.includes(i)) wrong_inputs.push(i);
-        }
-        old_bulb_states.forEach((state,idx) => nodes[bulb_indicies[idx]].data.on = state);
-        return wrong_inputs;
-    };
+function create_test_function(
+  input_count: number,
+  should_activate: number[]
+): (nodes: Node[], edges: Edge[]) => number[] {
+  return (nodes: Node[], edges: Edge[]) => {
+    const wrong_inputs: number[] = [];
+    const bulb_indicies: number[] = [];
+    for (let x = 0; x < input_count; x++) {
+      bulb_indicies.push(
+        nodes.findIndex((node) => node.id == "bulb" + x.toString())
+      );
+    }
+    const old_bulb_states = bulb_indicies.map((idx) => nodes[idx].data.on);
+    for (let i = 0; i < 1 << input_count; i++) {
+      for (let x = 0; x < input_count; x++) {
+        nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
+      }
+      const output = simulate(nodes, edges).active_nodes.includes("bumi");
+      if (output != should_activate.includes(i)) wrong_inputs.push(i);
+    }
+    old_bulb_states.forEach(
+      (state, idx) => (nodes[bulb_indicies[idx]].data.on = state)
+    );
+    return wrong_inputs;
+  };
 }
 
 const level_data: Level[] = [
@@ -110,7 +116,7 @@ const level_data: Level[] = [
       make_bumi(2),
     ],
     available_gates: ["OR"],
-    testing_function: create_test_function(2, [1,2,3]),
+    testing_function: create_test_function(2, [1, 2, 3]),
     prompt:
       "Introducing your next gate: OR. This gate will turn on if <em>at least 1</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when at least 1 input is on.</em>",
     difficulty: "intro",
@@ -173,7 +179,7 @@ const level_data: Level[] = [
       make_bulb(2, "Bit C (100)"),
       make_bumi(3),
     ],
-    available_gates: ["NOT","AND","OR","XOR","NAND","NOR"],
+    available_gates: ["NOT", "AND", "OR", "XOR", "NAND", "NOR"],
     testing_function: create_test_function(3, [2, 3, 5, 7]),
     prompt:
       "Bumi is taking a math class and is struggling to understand what numbers are prime. He keeps forgetting that 2 is prime and he keeps thinking that 1 is prime. Build an ant circuit that feeds Bumi if and only if the input is a prime binary number.",
@@ -216,7 +222,7 @@ const level_data: Level[] = [
       make_bulb(4, "Input E"),
       make_bumi(5),
     ],
-    available_gates: ["NOT","AND","OR","XOR","NAND","NOR"],
+    available_gates: ["NOT", "AND", "OR", "XOR", "NAND", "NOR"],
     testing_function: create_test_function(
       5,
       [
@@ -265,7 +271,7 @@ const level_data: Level[] = [
     available_gates: ["NAND"],
     testing_function: create_test_function(3, [0, 1, 2, 7]),
     prompt:
-      "Bumi's teacher has recently been covering \"functionally complete sets\" which are sets of logic gates that can create all other possible logic gates. Surprisingly, NAND itself is functionally complete because you can construct all other logic gates with it. In this exercise Bumi has to compare the actual value of \"a AND b\" with the <em>claimed</em> value of \"a AND b\". If the claim value is correct, activate his tongue. Use only NAND gates.",
+      'Bumi\'s teacher has recently been covering "functionally complete sets" which are sets of logic gates that can create all other possible logic gates. Surprisingly, NAND itself is functionally complete because you can construct all other logic gates with it. In this exercise Bumi has to compare the actual value of "a AND b" with the <em>claimed</em> value of "a AND b". If the claim value is correct, activate his tongue. Use only NAND gates.',
     difficulty: "medium",
   },
   {
@@ -285,4 +291,4 @@ const level_data: Level[] = [
   },
 ];
 
-export { level_data, puzzleOrder, nextPuzzle};
+export { level_data, nextPuzzle, puzzleOrder };

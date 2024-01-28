@@ -11,10 +11,10 @@ function Signup() {
 
   const callback = (event: any) => {
     event.preventDefault();
-    let username = (document.querySelector("#username")! as HTMLInputElement)
+    const username = (document.querySelector("#username")! as HTMLInputElement)
       .value;
-    let email = (document.querySelector("#email")! as HTMLInputElement).value;
-    let password = (document.querySelector("#password")! as HTMLInputElement)
+    const email = (document.querySelector("#email")! as HTMLInputElement).value;
+    const password = (document.querySelector("#password")! as HTMLInputElement)
       .value;
     sign_up(username, email, password).then((result) => {
       if (result == "forbidden") {
