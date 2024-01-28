@@ -116,8 +116,7 @@ const Level = () => {
         setSubmitMessage("Success");
         setIsSolved(true);
         // Ignore return value
-        console.log(index,nodes.length - level_data[index].default_nodes.length);
-        update_my_leaderboard(Number(index),nodes.length-level_data[index].default_nodes.length).then(response => {
+        update_my_leaderboard(Number(index),1 + nodes.length-level_data[index].default_nodes.length).then(response => {
             console.log("Update leaderboard response: "+response);
         });
     }
