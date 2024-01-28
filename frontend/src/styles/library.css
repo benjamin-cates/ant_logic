@@ -64,15 +64,27 @@ button.lib_page_btn:hover {
 
 table {
     width: 100%;
-    margin-top: 4rem;
-
+    background-color: #666;
     border-collapse: collapse;
 }
 
 table, th, td {
-    border: 1px solid #388697;
+    border: 4px solid #388697;
 }
 
 th,td {
     padding: 0.5rem;
+}
+
+th {
+    background-color: #388697;
+    color: #fff;
+}
+
+.library-table {
+  margin-top: 4rem;
+}
+
+.truth-table {
+  margin-bottom: 1rem;
 }

@@ -31,7 +31,6 @@ function App() {
   }, []);
 
   return (
-    <>
       <div id="main" style={{ marginTop: "5rem" }}>
         <h1>AntLogic</h1>
         <p>
@@ -114,7 +113,6 @@ function App() {
           />
         </svg>
       </div>
-    </>
   );
 }
 
