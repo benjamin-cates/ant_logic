@@ -5,7 +5,6 @@ import { useActiveNodes } from "../utils/state";
 const Edge = ({
   id,
   source,
-  target,
   sourceX,
   sourceY,
   targetX,
@@ -13,7 +12,6 @@ const Edge = ({
 }: {
   id: string;
   source: string;
-  target: string;
   sourceX: number;
   sourceY: number;
   targetX: number;
