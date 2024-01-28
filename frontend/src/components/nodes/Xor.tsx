@@ -2,12 +2,13 @@ import { Handle, Position } from "reactflow";
 
 import { handleStyles } from "../../utils/handles";
 import { useActiveNodes } from "../../utils/state";
+import Toolbar from "../Toolbar";
 
 const Xor = ({ id }: { id: string }) => {
   const activeNodes = useActiveNodes((state) => state.activeNodes);
 
   return (
-    <>
+    <Toolbar id={id}>
       <svg
         width="160"
         height="68"
@@ -96,7 +97,7 @@ const Xor = ({ id }: { id: string }) => {
         }}
         id="xor_out_1"
       />
-    </>
+    </Toolbar>
   );
 };
 

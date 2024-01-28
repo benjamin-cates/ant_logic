@@ -2,12 +2,13 @@ import { Handle, Position } from "reactflow";
 
 import { handleStyles } from "../../utils/handles";
 import { useActiveNodes } from "../../utils/state";
+import Toolbar from "../Toolbar";
 
 const Nor = ({ id }: { id: string }) => {
   const activeNodes = useActiveNodes((state) => state.activeNodes);
 
   return (
-    <>
+    <Toolbar id={id}>
       <svg
         width="159"
         height="68"
@@ -95,7 +96,7 @@ const Nor = ({ id }: { id: string }) => {
         }}
         id="nor_out_1"
       />
-    </>
+    </Toolbar>
   );
 };
 
