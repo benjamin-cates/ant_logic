@@ -20,6 +20,7 @@ import { update_my_leaderboard } from "../utils/backend.ts";
 import { simulate } from "../utils/logic";
 import { useActiveNodes } from "../utils/state.ts";
 import svgs from "../utils/svgs.tsx";
+import Edge from "./Edge.tsx";
 import And from "./nodes/And";
 import Bulb from "./nodes/Bulb";
 import Bumi from "./nodes/Bumi";
@@ -29,6 +30,10 @@ import Not from "./nodes/Not";
 import Or from "./nodes/Or";
 import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
+
+const edgeTypes = {
+  default: Edge,
+};
 
 const Level = () => {
   const [params] = useSearchParams();
@@ -92,7 +97,8 @@ const Level = () => {
   );
 
   const onConnect = (connection: Connection) => {
-    setEdges((eds) => addEdge(connection, eds));
+    const newEdge = { ...connection, type: "default" };
+    setEdges((eds) => addEdge(newEdge, eds));
   };
 
   useEffect(() => {
@@ -183,6 +189,7 @@ const Level = () => {
           id="level_prompt"
         ></p>
         <h2>Inventory</h2>
+        <p id="c_a_d">(click and drag)</p>
         {level_data[index].available_gates.length == 0 && (
           <p
             style={{
@@ -237,6 +244,7 @@ const Level = () => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         onConnect={onConnect}
         onInit={setReactFlowInstance as any}
         isValidConnection={isValidConnection}
@@ -244,10 +252,6 @@ const Level = () => {
         fitView
         defaultEdgeOptions={{
           animated: true,
-          style: {
-            strokeWidth: 3,
-            stroke: "#C0C0C0",
-          },
         }}
         connectionLineStyle={{
           strokeWidth: 3,
