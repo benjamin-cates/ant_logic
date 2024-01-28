@@ -16,7 +16,7 @@
   top: 0;
 }
 #level_side_panel {
-  overflow-y: scroll;
+  overflow-y: auto;
   width: calc(max(20rem, 50vw));
   height: 100vh;
   background: #555555;
