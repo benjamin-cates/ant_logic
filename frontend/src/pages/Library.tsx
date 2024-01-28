@@ -1,6 +1,7 @@
 import "../styles/library.css";
 
 import { ReactElement, useState } from "react";
+
 import { Link } from "react-router-dom";
 import svgs from "../utils/svgs";
 
@@ -87,12 +88,12 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "B", "A ∨ B"],
-        [0, 0, 0],
-        [0, 1, 1],
-        [1, 0, 1],
-        [1, 1, 1],
-      ],
+      ["A", "B", "A ∨ B"],
+      [0, 0, 0],
+      [0, 1, 1],
+      [1, 0, 1],
+      [1, 1, 1],
+    ],
   },
   {
     name: "XOR Gate",
@@ -106,12 +107,12 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "B", "A ∧ B"],
-        [0, 0, 0],
-        [0, 1, 1],
-        [1, 0, 1],
-        [1, 1, 0],
-      ],
+      ["A", "B", "A ∧ B"],
+      [0, 0, 0],
+      [0, 1, 1],
+      [1, 0, 1],
+      [1, 1, 0],
+    ],
   },
   {
     name: "NOT Gate",
@@ -125,10 +126,10 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "¬A"],
-        [0, 1],
-        [1, 0],
-      ],
+      ["A", "¬A"],
+      [0, 1],
+      [1, 0],
+    ],
   },
   {
     name: "NOR Gate",
@@ -143,12 +144,12 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "B", "A ↓ B"],
-        [0, 0, 1],
-        [0, 1, 0],
-        [1, 0, 0],
-        [1, 1, 0],
-      ],
+      ["A", "B", "A ↓ B"],
+      [0, 0, 1],
+      [0, 1, 0],
+      [1, 0, 0],
+      [1, 1, 0],
+    ],
   },
   {
     name: "NAND Gate",
@@ -163,12 +164,12 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "B", "A ↑ B"],
-        [0, 0, 1],
-        [0, 1, 1],
-        [1, 0, 1],
-        [1, 1, 0],
-      ],
+      ["A", "B", "A ↑ B"],
+      [0, 0, 1],
+      [0, 1, 1],
+      [1, 0, 1],
+      [1, 1, 0],
+    ],
   },
   {
     name: "XNOR Gate",
@@ -184,65 +185,65 @@ const library_pages: LibraryPage[] = [
       </>
     ),
     table: [
-        ["A", "B", "A ↔ B"],
-        [0, 0, 1],
-        [0, 1, 0],
-        [1, 0, 0],
-        [1, 1, 1],
-    ]
+      ["A", "B", "A ↔ B"],
+      [0, 0, 1],
+      [0, 1, 0],
+      [1, 0, 0],
+      [1, 1, 1],
+    ],
   },
-  {
-    name: "3AND Gate",
-    page: (
-      <>
-        {" "}
-        The 3AND gate is a 3-input extension of AND that activates if all 3
-        inputs are true.
-        <br />
-        <br />
-        Symbol in logic: a ∧ b ∧ c
-      </>
-    ),
-    table: [
-        ["A", "B", "C", "A ∧ B ∧ C"],
-        [0, 0, 0, 0],
-        [0, 0, 1, 0],
-        [0, 1, 0, 0],
-        [0, 1, 1, 0],
-        [1, 0, 0, 0],
-        [1, 0, 1, 0],
-        [1, 1, 0, 0],
-        [1, 1, 1, 1],
-    ]
-  },
-  {
-    name: "3OR Gate",
-    page: (
-      <>
-        {" "}
-        The 3OR gate is a 3-input extension of OR that activates if at least 1
-        of 3 inputs are true.
-        <br />
-        <br />
-        Symbol in logic: a ∨ b ∨ c
-      </>
-    ),
-    table: [
-        ["A", "B", "C", "A ∨ B ∨ C"],
-        [0, 0, 0, 0],
-        [0, 0, 1, 1],
-        [0, 1, 0, 1],
-        [0, 1, 1, 1],
-        [1, 0, 0, 1],
-        [1, 0, 1, 1],
-        [1, 1, 0, 1],
-        [1, 1, 1, 1],
-    ]
-  },
+  // {
+  //   name: "3AND Gate",
+  //   page: (
+  //     <>
+  //       {" "}
+  //       The 3AND gate is a 3-input extension of AND that activates if all 3
+  //       inputs are true.
+  //       <br />
+  //       <br />
+  //       Symbol in logic: a ∧ b ∧ c
+  //     </>
+  //   ),
+  //   table: [
+  //       ["A", "B", "C", "A ∧ B ∧ C"],
+  //       [0, 0, 0, 0],
+  //       [0, 0, 1, 0],
+  //       [0, 1, 0, 0],
+  //       [0, 1, 1, 0],
+  //       [1, 0, 0, 0],
+  //       [1, 0, 1, 0],
+  //       [1, 1, 0, 0],
+  //       [1, 1, 1, 1],
+  //   ]
+  // },
+  // {
+  //   name: "3OR Gate",
+  //   page: (
+  //     <>
+  //       {" "}
+  //       The 3OR gate is a 3-input extension of OR that activates if at least 1
+  //       of 3 inputs are true.
+  //       <br />
+  //       <br />
+  //       Symbol in logic: a ∨ b ∨ c
+  //     </>
+  //   ),
+  //   table: [
+  //       ["A", "B", "C", "A ∨ B ∨ C"],
+  //       [0, 0, 0, 0],
+  //       [0, 0, 1, 1],
+  //       [0, 1, 0, 1],
+  //       [0, 1, 1, 1],
+  //       [1, 0, 0, 1],
+  //       [1, 0, 1, 1],
+  //       [1, 1, 0, 1],
+  //       [1, 1, 1, 1],
+  //   ]
+  // },
 ];
 
 function Library() {
-  let [pageId, setPageId] = useState(0);
+  const [pageId, setPageId] = useState(0);
 
   return (
     <>
@@ -297,7 +298,7 @@ function Library() {
           </div>
           {library_pages[pageId].table && (
             <div className="library-table">
-                <p className="truth-table">Truth Table</p>
+              <p className="truth-table">Truth Table</p>
               <table>
                 <thead>
                   <tr>
