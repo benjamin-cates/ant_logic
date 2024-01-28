@@ -61,3 +61,18 @@ button.lib_page_btn:hover {
 #library_header {
   color: #388697;
 }
+
+table {
+    width: 100%;
+    margin-top: 4rem;
+
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #388697;
+}
+
+th,td {
+    padding: 0.5rem;
+}
