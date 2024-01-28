@@ -104,8 +104,6 @@ const Level = () => {
       }
       return newNodes;
     });
-
-    console.log("Updated active nodes:", activeNodes);
   }, [activeNodes]);
 
   const submitCode = () => {
@@ -149,9 +147,14 @@ const Level = () => {
     <div id="level_wrapper" style={{}}>
       <div id="level_side_panel">
         <Link to={"/levels"}>
-          <button id="level_back_button" className="btn-gray">← Back to Level Menu</button>
+          <button id="level_back_button" className="btn-gray">
+            ← Back to Level Menu
+          </button>
         </Link>
-        <p dangerouslySetInnerHTML={{__html: level_data[index].prompt}} id="level_prompt"></p>
+        <p
+          dangerouslySetInnerHTML={{ __html: level_data[index].prompt }}
+          id="level_prompt"
+        ></p>
         <h2>Inventory</h2>
         <div id="inventory_buttons">
           {level_data[index].available_gates.map((name) => (
@@ -165,7 +168,11 @@ const Level = () => {
             </div>
           ))}
         </div>
-        <button id="level_submit_button" className="btn-blue" onClick={submitCode}>
+        <button
+          id="level_submit_button"
+          className="btn-blue"
+          onClick={submitCode}
+        >
           Submit
         </button>
       </div>
