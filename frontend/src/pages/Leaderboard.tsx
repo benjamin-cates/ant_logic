@@ -61,7 +61,7 @@ function Leaderboard() {
             >
               {listing.name}
             </button>
-          ))}
+          )).slice(1)}
         </div>
         <div id="leaderboard_scores">
           {leaderboardData.map((listing, idx) => (
