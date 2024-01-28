@@ -28,6 +28,7 @@ import Not from "./nodes/Not";
 import Or from "./nodes/Or";
 import Xnor from "./nodes/Xnor";
 import Xor from "./nodes/Xor";
+import { update_my_leaderboard } from "../utils/backend.ts";
 
 const Level = () => {
   const [params] = useSearchParams();
@@ -38,6 +39,8 @@ const Level = () => {
   );
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [submitMessage, setSubmitMessage] = useState(" ");
+  const [isSolved, setIsSolved] = useState(false);
 
   const activeNodes = useActiveNodes((state) => state.activeNodes);
   const setActiveNodes = useActiveNodes((state) => state.setActiveNodes);
@@ -108,7 +111,19 @@ const Level = () => {
   }, [activeNodes]);
 
   const submitCode = () => {
-    console.log(level_data[index].testing_function(nodes, edges));
+    const wrong_cases = level_data[index].testing_function(nodes, edges);
+    if(wrong_cases.length == 0) {
+        setSubmitMessage("Success");
+        setIsSolved(true);
+        // Ignore return value
+        console.log(index,nodes.length - level_data[index].default_nodes.length);
+        update_my_leaderboard(Number(index),nodes.length-level_data[index].default_nodes.length).then(response => {
+            console.log("Update leaderboard response: "+response);
+        });
+    }
+    else {
+        setSubmitMessage("Your solution doesn't work for " + wrong_cases.length + " case"+((wrong_cases.length==1)?"":"s")+". Hint: have you tried a solution where the inputs spell out " + wrong_cases[0].toString(2).padStart(level_data[index].default_nodes.length-1,'0') + " in binary?");
+    }
   };
 
   const onDragOver = useCallback((event: any) => {
@@ -191,6 +206,10 @@ const Level = () => {
         >
           Submit
         </button>
+        <div className="level_submit_response">{submitMessage}</div>
+        {
+            isSolved && <a href={"/levels/" + (Number(index)+1).toString()}><button className="btn-blue">Next Puzzle</button></a>
+        }
       </div>
       <ReactFlow
         nodes={nodes}

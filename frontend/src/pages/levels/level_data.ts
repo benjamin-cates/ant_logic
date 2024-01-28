@@ -34,31 +34,24 @@ function make_bumi(num_bulbs: number): Node {
   };
 }
 
-function create_test_function(
-  input_count: number,
-  should_activate: number[]
-): (nodes: Node[], edges: Edge[]) => number[] {
-  return (nodes: Node[], edges: Edge[]) => {
-    const wrong_inputs: number[] = [];
-    const bulb_indicies: number[] = [];
-    for (let x = 0; x < input_count; x++) {
-      bulb_indicies.push(
-        nodes.findIndex((node) => node.id == "bulb" + x.toString())
-      );
-    }
-    const old_bulb_states = bulb_indicies.map((idx) => nodes[idx].data.on);
-    for (let i = 0; i < 1 << input_count; i++) {
-      for (let x = 0; x < input_count; x++) {
-        nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
-      }
-      const output = simulate(nodes, edges).active_nodes.includes("bumi");
-      if (output != should_activate.includes(i)) wrong_inputs.push(i);
-    }
-    old_bulb_states.forEach(
-      (state, idx) => (nodes[bulb_indicies[idx]].data.on = state)
-    );
-    return wrong_inputs;
-  };
+function create_test_function(input_count: number, should_activate: number[]): (nodes: Node[], edges: Edge[]) => number[] {
+    return (nodes: Node[], edges: Edge[]) => {
+        let wrong_inputs: number[] = [];
+        let bulb_indicies: number[] = [];
+        for(let x = 0; x < input_count; x++) {
+            bulb_indicies.push(nodes.findIndex(node=>node.id=="bulb"+x.toString()));
+        }
+        let old_bulb_states = bulb_indicies.map(idx => nodes[idx].data.on);
+        for(let i = 0;i < (1 << input_count); i++) {
+            for(let x = 0; x < input_count; x++) {
+                nodes[bulb_indicies[x]].data.on = (i & (1 << x)) != 0;
+            }
+            let output = simulate(nodes,edges).active_nodes.includes("bumi");
+            if(output != should_activate.includes(i)) wrong_inputs.push(i);
+        }
+        old_bulb_states.forEach((state,idx) => nodes[bulb_indicies[idx]].data.on = state);
+        return wrong_inputs;
+    };
 }
 
 const level_data: Level[] = [
@@ -90,7 +83,7 @@ const level_data: Level[] = [
       make_bumi(2),
     ],
     available_gates: ["OR"],
-    testing_function: create_test_function(2, [2]),
+    testing_function: create_test_function(2, [1,2,3]),
     prompt:
       "Introducing your next gate: OR. This gate will turn on if <em>at least 1</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when at least 1 input is on.</em>",
   },
@@ -98,7 +91,7 @@ const level_data: Level[] = [
     name: "NOT gate",
     default_nodes: [make_bulb(0, "Input A"), make_bumi(1)],
     available_gates: ["NOT"],
-    testing_function: create_test_function(2, [2]),
+    testing_function: create_test_function(1, [0]),
     prompt:
       "Your last simple gate is NOT. This gate will only turn on if the input is <em>off</em>.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when the input is off.</em>",
   },
@@ -148,7 +141,7 @@ const level_data: Level[] = [
       make_bulb(2, "Bit C (100)"),
       make_bumi(3),
     ],
-    available_gates: ["AND", "OR", "NOT", "XOR"],
+    available_gates: ["NOT","AND","OR","XOR","NAND","NOR"],
     testing_function: create_test_function(3, [2, 3, 5, 7]),
     prompt:
       "Bumi is taking a math class and is struggling to understand what numbers are prime. He keeps forgetting that 2 is prime and he keeps thinking that 1 is prime. Build an ant circuit that feeds Bumi if and only if the input is a prime binary number.",
@@ -188,9 +181,9 @@ const level_data: Level[] = [
       make_bulb(4, "Input E"),
       make_bumi(5),
     ],
-    available_gates: ["NOR"],
+    available_gates: ["NOT","AND","OR","XOR","NAND","NOR"],
     testing_function: create_test_function(
-      3,
+      5,
       [
         0b00001, 0b00010, 0b00100, 0b01000, 0b10000, 0b00111, 0b01110, 0b11100,
         0b01101, 0b11001, 0b11010, 0b01011, 0b10011, 0b10110, 0b10101, 0b1111,
