@@ -234,7 +234,7 @@ const Level = () => {
           {submitMessage}
         </div>
         {isSolved && (
-          <a href={"/levels/" + nextPuzzle(index)}>
+          <a href={"/levels/" + nextPuzzle(Number(index))}>
             <button className="btn-green">Next Puzzle</button>
           </a>
         )}
