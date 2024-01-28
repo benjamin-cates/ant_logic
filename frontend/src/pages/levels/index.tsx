@@ -1,17 +1,20 @@
 import "../../styles/levels.css";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { level_data, puzzleOrder } from "./level_data";
+
 import { Link } from "react-router-dom";
 import { get_self_info } from "../../utils/backend";
-import { level_data, puzzleOrder } from "./level_data";
 
 function Levels() {
   const [completed, setCompleted] = useState([false]);
 
   useEffect(() => {
     get_self_info().then((user) => {
-        if (user != undefined) setCompleted(user.scores.map((score) => score != 0));
-    })},[]);
+      if (user != undefined)
+        setCompleted(user.scores.map((score) => score != 0));
+    });
+  }, []);
   return (
     <div id="main" className="levels-header">
       <div id="top-bar">
@@ -90,12 +93,16 @@ function Levels() {
           return (
             <Link key={idx.toString()} to={"/levels/" + levelId.toString()}>
               <button
-                className={`${completed[levelId] ? "lvl-completed" : ""} lvl-btn`}
+                className={`${
+                  completed[levelId] ? "lvl-completed" : ""
+                } lvl-btn`}
               >
-                <div className={`difficulty difficulty-${level_data[levelId].difficulty}`}>
+                <div
+                  className={`difficulty difficulty-${level_data[levelId].difficulty}`}
+                >
                   {level_data[levelId].difficulty}
                 </div>
-                {level_data[levelId].name}
+                <p>{level_data[levelId].name}</p>
               </button>
             </Link>
           );

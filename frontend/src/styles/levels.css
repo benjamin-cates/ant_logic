@@ -18,20 +18,20 @@
 
 .bounding-box a {
   width: 100%;
+  text-decoration: none;
 }
 
 .lvl-completed.lvl-btn {
   background-color: var(--green);
 }
 .difficulty {
-  display: inline;
-  width: 4rem;
-  padding: 0.25rem;
+  position: absolute;
+  padding: 0.5rem 1rem;
+  text-align: center;
   background-color: #333333;
   border-radius: 1rem;
   text-transform: uppercase;
-  font-size: 0.7rem;
-  float: left;
+  font-size: 1rem;
 }
 .difficulty-intro {
   color: #406dde;
@@ -47,11 +47,19 @@
 }
 
 button.lvl-btn {
-  padding: 0.5rem 4rem 0.5rem 0.5rem;
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.lvl-btn p {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 2rem;
 }
 
 .lvl-btn {
-  font-size: 2rem;
   width: 100%;
   border: none;
   background-color: #333;
