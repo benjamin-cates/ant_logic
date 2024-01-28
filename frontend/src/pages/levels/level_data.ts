@@ -2,13 +2,17 @@ import { Edge, Node } from "reactflow";
 
 import { simulate } from "../../utils/logic";
 
+
+type Difficulty = "intro" | "easy" | "medium" | "hard";
+
 interface Level {
   default_nodes: Node[];
   testing_function: (nodes: Node[], edges: Edge[]) => number[];
   available_gates: string[];
   prompt: string;
   name: string;
-}
+  difficulty: Difficulty,
+} 
 
 function make_bulb(id: number, label: string): Node {
   return {
@@ -62,6 +66,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(1, [1]),
     prompt:
       "Welcome to AntLogic! This is Bumi, he is a very hungry anteater who craves electricity, for some unexplained reason. He is very picky about which power sources he eats from, so in most puzzles you will need to use logic gates to direct the flow of power.<br/><br/>Hitting the button on a light switch will turn it on/off. Clicking and dragging from any node square to another will establish a connection. If Bumi is receiving power, he will wag his tounge :)<br/><br/>For puzzles, your solutions must work for <em>every</em> possible input.<br/><br/><em>To complete this puzzle, feed Bumi when input A is on, and don't feed him when it's off.</em>",
+    difficulty: "intro",
   },
   {
     name: "AND gate",
@@ -74,6 +79,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(2, [3]),
     prompt:
       "Introducing your first gate: AND. This gate will only turn on if <em>both</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when both inputs are on.</em>",
+    difficulty: "intro",
   },
   {
     name: "OR gate",
@@ -86,6 +92,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(2, [1,2,3]),
     prompt:
       "Introducing your next gate: OR. This gate will turn on if <em>at least 1</em> of its inputs are on.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when at least 1 input is on.</em>",
+    difficulty: "intro",
   },
   {
     name: "NOT gate",
@@ -94,6 +101,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(1, [0]),
     prompt:
       "Your last simple gate is NOT. This gate will only turn on if the input is <em>off</em>.<br/><br/>*Remember you can always view your gates in the Gate Library Tab!<br/><br/><em>To complete this puzzle, Build an ant circuit that feeds Bumi when the input is off.</em>",
+    difficulty: "intro",
   },
   {
     name: "XOR gate",
@@ -106,6 +114,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(2, [1, 2]),
     prompt:
       "Bumi is learning about a new kind of gate in his computer science class. This gate is called XOR and turns on if either the first input is on or the second input is on, but not if both are on. However, it seems that you don’t have this gate anywhere in your zookeeper shed. Build an ant circuit that is equivalent to this, but with different gates, so we can teach Bumi how it works!",
+    difficulty: "intro",
   },
   {
     name: "isFive(x)",
@@ -119,6 +128,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(3, [5]),
     prompt:
       "As a computer science student Bumi is trying to learn binary. A good example number is 5, which is “101” in binary. Build an ant circuit that teaches him what the number 5 is by only turning on when that input is given.",
+    difficulty: "easy",
   },
   {
     name: "Feeding time",
@@ -132,6 +142,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(3, [1, 2, 4]),
     prompt:
       "A wildlife researcher built a circuit that triggers when Bumi’s feeding times are. It outputs “001” for breakfast, “010” for lunch, and “100” for dinner. Build an ant circuit that feeds Bumi when only exactly one of these bulbs is on.",
+    difficulty: "medium",
   },
   {
     name: "Prime numbers",
@@ -145,6 +156,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(3, [2, 3, 5, 7]),
     prompt:
       "Bumi is taking a math class and is struggling to understand what numbers are prime. He keeps forgetting that 2 is prime and he keeps thinking that 1 is prime. Build an ant circuit that feeds Bumi if and only if the input is a prime binary number.",
+    difficulty: "medium",
   },
   {
     name: "XOR v2",
@@ -157,6 +169,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(2, [1, 2]),
     prompt:
       "Bumi needs reinforcement on his XOR exercise. If you forgot, only turn the light on if either one of the lights is on, but not both. However, it seems that you have run out of ant gates except for NAND gates until the next shipment comes! Build this circuit using only NAND gates",
+    difficulty: "hard",
   },
   {
     name: "Prime numbers v2",
@@ -170,6 +183,7 @@ const level_data: Level[] = [
     testing_function: create_test_function(3, [2, 3, 5, 7]),
     prompt:
       "Despite his first lesson, Bumi is still struggling to learn prime numbers. Build him another ant circuit lesson, but oh no! We seem to only have NOR gates left!",
+    difficulty: "hard",
   },
   {
     name: "Odd numbers",
@@ -191,6 +205,7 @@ const level_data: Level[] = [
     ),
     prompt:
       "In Bumi’s math class, he is learning about odd numbers and counting. To train him, he is given 5 light bulbs and only given food when an odd number of bulbs are lit up. Build an ant circuit that accomplishes this",
+    difficulty: "medium",
   },
 ];
 

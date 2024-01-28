@@ -91,6 +91,9 @@ function Levels() {
               <button
                 className={`${completed[idx] ? "lvl-completed" : ""} lvl-btn`}
               >
+                <div className={`difficulty difficulty-${level.difficulty}`}>
+                  {level.difficulty}
+                </div>
                 {level.name}
               </button>
             </Link>
