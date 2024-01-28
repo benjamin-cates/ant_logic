@@ -202,6 +202,7 @@ const Level = () => {
         onInit={setReactFlowInstance as any}
         isValidConnection={isValidConnection}
         connectionMode={ConnectionMode.Strict}
+        fitView
         defaultEdgeOptions={{
           animated: true,
           style: {
