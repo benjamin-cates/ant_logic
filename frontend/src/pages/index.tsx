@@ -14,14 +14,14 @@ function App() {
   const [tongueActive, setTongueActive] = useState(false);
 
   const { x } = useSpring({
-    config: { duration: 1000, easing: easings.easeInOutSine },
+    config: { duration: 1500, easing: easings.easeInOutSine },
     x: tongueActive ? 1 : 0,
   });
 
   useEffect(() => {
     const id = setTimeout(() => {
       setTongueActive(!tongueActive);
-    }, 1000);
+    }, 1500);
 
     return () => clearTimeout(id);
   }, [tongueActive]);
@@ -66,6 +66,7 @@ function App() {
           )}
         </div>
 
+        <p id="bumi_frontpage_label">(bumi)</p>
         <svg
           id="bumi_frontpage"
           width="3998"

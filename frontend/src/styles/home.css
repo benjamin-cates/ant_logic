@@ -23,6 +23,14 @@
   justify-content: center;
 }
 
+#bumi_frontpage_label {
+  position: fixed;
+  right: 3rem;
+  bottom: 2rem;
+  font-size: 2rem;
+  color: #444444;
+}
+
 #bumi_frontpage {
   position: fixed;
   right: 0;
