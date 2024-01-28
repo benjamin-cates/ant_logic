@@ -2,7 +2,7 @@ h1.leaderboard {
     margin-top: 3.5rem;
 }
 
-#main.leaderboard {
+#main.library {
     background: #555555;
     display: flex;
     flex-direction: row;
@@ -13,7 +13,7 @@ h1.leaderboard {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-#leaderboard_puzzles {
+#library_pages {
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -21,49 +21,30 @@ h1.leaderboard {
     gap: 0.5rem;
     padding: 0.5rem;
 }
-#leaderboard_scores {
+#library_page {
     width: 60%;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    justify-content: flex-start;
     height: 100%;
-    align-items: stretch;
+    padding: 2rem;
+    text-align: left;
+    font-size: 1.2rem;
+
 }
 
-.leaderboard_listing {
-    font-size: 1.4rem;
-    margin: 0.5rem 1rem 0.5rem 1rem;
-    display: block;
-    line-height: 2rem;
-}
-
-.leaderboard_username {
-    float: left;
-    display: inline;
-}
-.leaderboard_score {
-    float: right;
-    display: inline;
-}
-
-
-.leaderboard_puzzle {
+.lib_page_btn {
     background: #3E3E3E;
     color: #EEEEEE;
     text-align: left;
     border: none;
     transition: none;
 }
-.leaderboard_puzzle.leaderboard_puz_sel {
+.lib_page_btn.lib_page_btn_sel {
     background: var(--green);
 }
-button.leaderboard_puzzle.leaderboard_puz_sel:hover {
+button.lib_page_btn.lib_page_btn_sel:hover {
     background: var(--green);
 }
-
-button.leaderboard_puzzle:hover {
+button.lib_page_btn:hover {
     transform: scale(1.0);
     background: #444444;
 }
