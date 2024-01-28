@@ -17,7 +17,12 @@ In the level screen, there are lightbulbs on the left that represent the inputs.
 
 An example puzzle is:
 ```
-Bumi is learning about a new kind of gate in his computer science class. This gate is called XOR and turns on if either the first input is on or the second input is on, but not if both are on. However, it seems that you don’t have this gate anywhere in your zookeeper shed. Build an ant circuit that is equivalent to this, but with different gates, so we can teach Bumi how it works!
+Bumi is learning about a new kind of gate in his computer science class.
+This gate is called XOR and turns on if either the first input is on or
+the second input is on, but not if both are on. However, it seems that
+you don’t have this gate anywhere in your zookeeper shed. Build an ant
+circuit that is equivalent to this, but with different gates, so we can
+teach Bumi how it works!
 ```
 
 Gates:
