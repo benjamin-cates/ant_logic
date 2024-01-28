@@ -46,6 +46,7 @@ const puzzleOrder = [
     4, // XOR gate
     5, // isFive(x)
     11, // Demorgan's
+    12, // Biconditional Operator
     6, // Feeding Time
     7, // Prime number
     10, // Odd numbers
@@ -237,6 +238,19 @@ const level_data: Level[] = [
     testing_function: create_test_function(2, [3]),
     prompt:
       "According to Bumi's Boolean Logic teacher, an AND gate can be constructed with just NOT gates and OR gates. To give Bumi a head start, his teacher said that DeMorgan's Law is NOT(a OR b) ≡ NOT(a) AND NOT(b). Create an ant circuit that simulates an AND gate using only OR gates and NOT gates.",
+    difficulty: "easy",
+  },
+  {
+    name: "Biconditional operator",
+    default_nodes: [
+      make_bulb(0, "Input A"),
+      make_bulb(1, "Input B"),
+      make_bumi(2),
+    ],
+    available_gates: ["AND", "OR", "NOT"],
+    testing_function: create_test_function(2, [0, 3]),
+    prompt:
+      "Bumi's teacher is introducing a new boolean opertor: the biconditional operator! This operator returns true if and only if both inputs are equal. The corresponding gate for this is XNOR, however the zoo couldn't get a shipment in fast enough before Bumi's next test! Create a logic gate that's equivalent to the XNOR using the gates you have right now.",
     difficulty: "easy",
   },
 ];
