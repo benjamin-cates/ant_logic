@@ -17,8 +17,8 @@
 
 .main-btns {
   display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -48,6 +48,9 @@
   right: 1rem;
 }
 
-#main-btn-leaderboard {
-  margin-top: 1.5rem;
+#main-secondary-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
 }

@@ -23,6 +23,26 @@
 .lvl-completed.lvl-btn {
   background-color: var(--green);
 }
+.difficulty {
+  display: inline;
+  width: 4rem;
+  padding: 0.25rem;
+  background-color: #333333;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  float: left;
+
+}
+.difficulty-intro { color: #406dde; }
+.difficulty-easy { color: #27ba51; }
+.difficulty-medium { color: #d1be2e; }
+.difficulty-hard { color: #d1462e; }
+
+
+button.lvl-btn {
+    padding: 0.5rem 4rem 0.5rem 0.5rem;
+}
 
 .lvl-btn {
   font-size: 2rem;
