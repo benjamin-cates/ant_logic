@@ -10,7 +10,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    
+    margin-bottom: 2rem;
 }
 .lvl-completed.lvl-btn  {
     background-color: var(--green);
