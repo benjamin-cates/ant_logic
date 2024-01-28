@@ -48,3 +48,12 @@ button.lib_page_btn:hover {
     transform: scale(1.0);
     background: #444444;
 }
+
+.library-img {
+    /* background-color: red; */
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 11rem;
+    margin-left: 10rem;
+    transform: scale(2)
+}

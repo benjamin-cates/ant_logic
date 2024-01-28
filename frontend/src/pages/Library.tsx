@@ -2,6 +2,7 @@ import "../styles/library.css";
 
 import { ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
+import svgs from "../utils/svgs";
 
 interface LibraryPage {
     page: ReactElement
@@ -10,39 +11,43 @@ interface LibraryPage {
 const library_pages: LibraryPage[] = [
     {
         name: "Wires",
-        page: <> Wires connect two nodes together. </>,
+        page: <> Wires connect two nodes together.<br/><br/>Click and drag from any output node (right side) to any input node (left side) to establish a connection.<br/><br/>You cannot create cycles between wires (circuits that don't have a definitive start and end), including self-loops.</>,
     },
     {
         name: "Bulb",
-        page: <> A bulb is an input source. </>,
+        page: <> A bulb is an input source.<br/><br/>Click the button on the bottom of a bulb to turn it on/off.<br/><br/>Your circuit must work correctly for every possible combination of inputs. </>,
     },
     {
         name: "Bumi",
-        page: <> Bumi is the anteater you're trying to feed electricity (for some reason)! </>,
+        page: <> Bumi is the anteater you're trying to feed electricity (for some reason)!<br/><br/>We love Bumi 🥰 </>,
     },
     {
         name: "AND Gate",
-        page: <> The AND gate is activated if both inputs are activated. </>,
+        page: <> The AND gate is activated if both inputs are activated.<br/><br/>Symbol in logic: ∧ </>,
     },
     {
         name: "OR Gate",
-        page: <> The OR gate is activated if at least 1 of the inputs are activated. </>,
+        page: <> The OR gate is activated if at least 1 of the inputs are activated.<br/><br/>Symbol in logic: ∨ </>,
     },
     {
         name: "XOR Gate",
-        page: <> The XOR gate is activated if <em>exactly</em> 1 input is activated </>,
+        page: <> The XOR gate is activated if <em>exactly</em> 1 input is activated.<br/><br/>Symbol in logic: ⊕</>,
+    },
+    {
+        name: "NOT Gate",
+        page: <> The NOT gate is activated if the input is not activated.<br/><br/>Symbol in logic: ¬</>,
     },
     {
         name: "NOR Gate",
-        page: <> The NOR gate is activated if OR would not be activated under the same inputs; neither input can be active. </>,
+        page: <> The NOR gate is activated if OR would not be activated under the same inputs; neither input can be active.<br/><br/>Symbol in logic: ↓ </>,
     },
     {
         name: "NAND Gate",
-        page: <> The NAND gate is activated if AND would not be activated under the same inputs; at <em>most</em> 1 input can be active. </>,
+        page: <> The NAND gate is activated if AND would not be activated under the same inputs; at <em>most</em> 1 input can be active.<br/><br/>Symbol in logic: ↑</>,
     },
     {
         name: "XNOR Gate",
-        page: <> The XNOR gate is activated if XOR would not be activated under the same inputs; it is equivalent to the biconditional operator, requiring both inputs to be equivalent. </>,
+        page: <> The XNOR gate is activated if XOR would not be activated under the same inputs; it is equivalent to the biconditional operator, requiring both inputs to be equivalent.<br/><br/>Symbol in logic: ↔</>,
     },
 
 
@@ -89,6 +94,9 @@ function Library() {
             </div>
             <div id="library_page">
                 { library_pages[pageId].page }
+                <div className="library-img">
+                    {svgs[library_pages[pageId].name.split(" ")[0]]}
+                </div>
             </div>
         </div>
     </>
