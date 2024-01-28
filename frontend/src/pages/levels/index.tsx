@@ -3,7 +3,7 @@ import "../../styles/levels.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { get_self_info } from "../../utils/backend";
-import { level_data } from "./level_data";
+import { level_data, puzzleOrder } from "./level_data";
 
 function Levels() {
   const [completed, setCompleted] = useState([false]);
@@ -85,16 +85,16 @@ function Levels() {
 
       <h1 id="levels-header">Puzzles</h1>
       <div className="bounding-box">
-        {level_data.map((level, idx) => {
+        {puzzleOrder.map((levelId, idx) => {
           return (
-            <Link key={idx.toString()} to={"/levels/" + idx.toString()}>
+            <Link key={idx.toString()} to={"/levels/" + levelId.toString()}>
               <button
-                className={`${completed[idx] ? "lvl-completed" : ""} lvl-btn`}
+                className={`${completed[levelId] ? "lvl-completed" : ""} lvl-btn`}
               >
-                <div className={`difficulty difficulty-${level.difficulty}`}>
-                  {level.difficulty}
+                <div className={`difficulty difficulty-${level_data[levelId].difficulty}`}>
+                  {level_data[levelId].difficulty}
                 </div>
-                {level.name}
+                {level_data[levelId].name}
               </button>
             </Link>
           );
