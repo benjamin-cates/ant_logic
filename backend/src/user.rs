@@ -1,5 +1,5 @@
 use crate::database::UserListing;
-use actix_web::{get, post, web, HttpRequest, HttpResponse};
+use actix_web::{post, web, HttpRequest, HttpResponse};
 use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
 use std::sync::Mutex;

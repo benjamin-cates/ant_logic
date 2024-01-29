@@ -1,8 +1,5 @@
 use crate::database::{self, TokenListing, UserListing};
-use actix_web::{
-    cookie::{time::Duration, Cookie},
-    post, web, HttpResponse,
-};
+use actix_web::{post, web, HttpResponse};
 use fireauth;
 use rusqlite::Connection;
 use serde::Deserialize;

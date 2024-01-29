@@ -2,7 +2,7 @@ use crate::{
     auth::verify_bearer,
     database::{LeaderboardListing, UserListing},
 };
-use actix_web::{get, post, web, HttpRequest, HttpResponse};
+use actix_web::{post, web, HttpRequest, HttpResponse};
 use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
 use std::sync::Mutex;
@@ -13,7 +13,10 @@ pub async fn post_update_score(
     json: web::Json<LeaderboardListing>,
     req: HttpRequest,
 ) -> HttpResponse {
-    let body = json.into_inner();
+    let mut body = json.into_inner();
+    if body.score > 999 {
+        body.score = 999;
+    }
     let Some(token) = req
         .headers()
         .get("Authorization")
@@ -22,7 +25,7 @@ pub async fn post_update_score(
     else {
         return HttpResponse::Forbidden().finish();
     };
-    if body.puzzle_id > 400 {
+    if body.puzzle_id > 400 || body.score == 0 {
         return HttpResponse::InternalServerError().finish();
     }
     let email = UserListing::select(body.username.as_str(), &db)
