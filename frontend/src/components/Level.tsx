@@ -221,12 +221,12 @@ const Level = () => {
     event.dataTransfer.effectAllowed = "move";
   };
   const summon = (nodeType: string) => {
-      setNodes((nds) => nds.concat({
-          id: Math.random().toString(),
-          type: nodeType,
-          position: {x: 200, y: 200},
-          data: { label: `${nodeType} node`},
-      }));
+    setNodes((nds) => nds.concat({
+      id: Math.random().toString(),
+      type: nodeType,
+      position: { x: 150 + Math.random() * 100, y: 150 + Math.random() * 100 },
+      data: { label: `${nodeType} node`},
+    }));
   }
 
   return (
