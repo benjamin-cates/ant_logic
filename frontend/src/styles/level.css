@@ -9,8 +9,8 @@
   }
   :scope #level_side_panel {
     width: 100%;
-    padding-right: 0;
     height: 50%;
+    border-bottom: 0.2rem #777 solid;
   }
   :scope 
 }
