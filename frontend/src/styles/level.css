@@ -1,3 +1,17 @@
+@media only screen and (max-width: 800px) {
+  :scope #level_back_button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+  }
+  :scope #level_wrapper {
+    flex-direction: column;
+  }
+  :scope #level_side_panel {
+    width: 100%;
+    padding-right: 0;
+  }
+}
 #level_back_button {
   margin-top: 1rem;
 }
@@ -21,6 +35,7 @@
   height: 100vh;
   background: #555555;
   padding: 1rem;
+  padding-bottom: 6rem;
 }
 
 #level_side_panel h2 {
