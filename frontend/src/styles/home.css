@@ -1,7 +1,7 @@
 #main {
   margin: 0 auto;
   margin-top: 5rem;
-  max-width: 800px;
+  width: calc(min(50rem,100vw - 3rem));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,26 @@
   width: 80%;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+  :scope .main-btns div {
+    flex-direction: column;
+  }
+  :scope #btn-login {
+    width: 100%;
+  }
+  :scope #main-secondary-btns {
+    padding: 0;
+  }
+  :scope .main-btns > div > a > button {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.5rem;
+  }
+  :scope #main {
+    margin-top: 2rem;
+  }
 }
 
 .main-btns div {
@@ -55,6 +75,7 @@
 }
 
 #bumi_frontpage {
+  pointer-events: none;
   position: fixed;
   right: 0;
   bottom: 0;

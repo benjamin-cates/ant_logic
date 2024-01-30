@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div id="main" style={{ marginTop: "5rem" }}>
+    <div id="main">
       <h1>AntLogic</h1>
       <p>
         Bumi is an anteater at the North Florida Wildlife Center. He's recently

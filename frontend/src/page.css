@@ -46,6 +46,11 @@ body {
   color: var(--text);
 }
 
+@media only screen and (max-width: 800px) {
+    :scope h1 {
+        font-size: 3rem;
+    }
+}
 h1 {
   font-family: "Irish Grover", sans-serif;
   font-size: 6rem;

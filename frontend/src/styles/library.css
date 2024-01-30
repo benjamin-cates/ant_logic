@@ -1,5 +1,18 @@
-h1.leaderboard {
+h1#library_header {
   margin-top: 3.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+    div#main.library {
+        flex-direction: column;
+    }
+    div#library_pages {
+        border-bottom: 0.3rem #CCC solid;
+        width: 100%;
+    }
+    div#library_page {
+        width: 100%;
+    }
 }
 
 #main.library {

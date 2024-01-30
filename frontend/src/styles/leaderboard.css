@@ -2,6 +2,18 @@ h1.leaderboard {
   margin-top: 3.5rem;
 }
 
+@media only screen and (max-width: 800px) {
+    div#main.leaderboard {
+        flex-direction: column;
+    }
+    div#leaderboard_puzzles {
+        border-bottom: 0.3rem #CCC solid;
+        width: 100%;
+    }
+    div#leaderboard_scores {
+        width: 100%;
+    }
+}
 #main.leaderboard {
   background: #555555;
   display: flex;
