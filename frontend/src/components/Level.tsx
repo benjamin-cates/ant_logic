@@ -220,6 +220,14 @@ const Level = () => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
   };
+  const summon = (nodeType: string) => {
+      setNodes((nds) => nds.concat({
+          id: Math.random().toString(),
+          type: nodeType,
+          position: {x: 200, y: 200},
+          data: { label: `${nodeType} node`},
+      }));
+  }
 
   return (
     <div id="level_wrapper" style={{}}>
@@ -256,6 +264,7 @@ const Level = () => {
               draggable
               className="inventory_button"
               onDragStart={(event) => onDragStart(event, name)}
+              onTouchStart={_=>summon(name)}
               key={name}
             >
               {svgs[name]}
